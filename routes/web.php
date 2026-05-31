@@ -1,0 +1,45 @@
+<?php
+
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
+
+use Illuminate\Support\Facades\Auth;
+Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('admin.dashboard');
+    }
+    return redirect()->route('login');
+});
+
+
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Admin\InvestorController;
+use App\Http\Controllers\Admin\InvestmentController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\ReportController;
+
+Route::prefix('admin')
+    ->middleware(['auth', 'verified', 'role:Super Admin|Admin|Employee|Accountant'])
+    ->as('admin.')
+    ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('projects', ProjectController::class);
+        Route::resource('properties', PropertyController::class);
+        Route::resource('investors', InvestorController::class);
+            Route::resource('investments', InvestmentController::class); // Adding investments resource route
+        Route::resource('payments', PaymentController::class);
+        Route::resource('employees', EmployeeController::class); // إضافة مسار الموظفين
+        Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
+        Route::get('settings', function() { return view('admin.settings'); })->name('settings');
+    });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

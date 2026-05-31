@@ -1,0 +1,50 @@
+@extends('layouts.admin')
+
+@section('title', 'تعديل استثمار')
+
+@section('content')
+<div class="container-fluid">
+    <h1 class="h3 mb-3">تعديل استثمار</h1>
+    @include('partials.form-errors')
+    <form action="{{ route('admin.investments.update', $investment) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="investor_id" class="form-label">المستثمر</label>
+                <select name="investor_id" id="investor_id" class="form-select" required>
+                    <option value="">اختر المستثمر</option>
+                    @foreach($investors as $investor)
+                        <option value="{{ $investor->id }}" {{ old('investor_id', $investment->investor_id) == $investor->id ? 'selected' : '' }}>{{ $investor->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="project_id" class="form-label">المشروع</label>
+                <select name="project_id" id="project_id" class="form-select" required>
+                    <option value="">اختر المشروع</option>
+                    @foreach($projects as $project)
+                        <option value="{{ $project->id }}" {{ old('project_id', $investment->project_id) == $project->id ? 'selected' : '' }}>{{ $project->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="amount" class="form-label">المبلغ</label>
+                <input type="number" name="amount" id="amount" class="form-control" value="{{ old('amount', $investment->amount) }}" required min="0" step="0.01">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="status" class="form-label">الحالة</label>
+                <select name="status" id="status" class="form-select" required>
+                    <option value="pending" {{ old('status', $investment->status) == 'pending' ? 'selected' : '' }}>قيد الانتظار</option>
+                    <option value="approved" {{ old('status', $investment->status) == 'approved' ? 'selected' : '' }}>مقبول</option>
+                    <option value="rejected" {{ old('status', $investment->status) == 'rejected' ? 'selected' : '' }}>مرفوض</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="bi bi-check"></i> حفظ التعديلات</button>
+        <a href="{{ route('admin.investments.index') }}" class="btn btn-secondary">إلغاء</a>
+    </form>
+</div>
+@endsection
