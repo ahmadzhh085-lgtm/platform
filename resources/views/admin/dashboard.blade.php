@@ -5,7 +5,7 @@
 @section('content')
 <div class="row g-4 mb-4">
     <div class="col-md-3">
-        <x-admin.card title="Total Investments" icon="bi-cash-stack" value="₦0" color="primary" />
+        <x-admin.card title="Total Investments" icon="bi-cash-stack" value="$0" color="primary" />
     </div>
     <div class="col-md-3">
         <x-admin.card title="Total Investors" icon="bi-people" value="0" color="success" />
@@ -14,7 +14,7 @@
         <x-admin.card title="Total Properties" icon="bi-house-door" value="0" color="info" />
     </div>
     <div class="col-md-3">
-        <x-admin.card title="Monthly Revenue" icon="bi-bar-chart-line" value="₦0" color="warning" />
+        <x-admin.card title="Monthly Revenue" icon="bi-bar-chart-line" value="$0" color="warning" />
     </div>
 </div>
 <div class="row g-4">

@@ -6,7 +6,7 @@
     <h4 class="mb-0">Projects</h4>
     <a href="{{ route('admin.projects.create') }}" class="btn btn-primary"><i class="bi bi-plus"></i> Add Project</a>
 </div>
-@include('partials.filters')
+@include('partials.filters', ['statuses' => $statuses ?? []])
 <div class="card shadow-sm rounded">
     <div class="table-responsive">
         <table class="table table-hover align-middle mb-0">
@@ -15,8 +15,8 @@
                     <th>Name</th>
                     <th>Location</th>
                     <th>Status</th>
-                    <th>Total Budget</th>
-                    <th>Actions</th>
+                    <th>Budget</th>
+                    <th style="width: 120px;">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,7 +25,7 @@
                         <td>{{ $project->name }}</td>
                         <td>{{ $project->location }}</td>
                         <td>@include('partials.status-badge', ['status' => $project->status])</td>
-                        <td>₦{{ number_format($project->total_budget, 2) }}</td>
+                        <td>${{ number_format($project->total_budget, 2) }}</td>
                         <td>
                             <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-sm btn-info"><i class="bi bi-eye"></i></a>
                             <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i></a>

@@ -12,11 +12,25 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
         $query = Project::query();
+        
+        // Search by name
         if ($request->filled('search')) {
             $query->where('name', 'like', '%'.$request->search.'%');
         }
+        
+        // Filter by status
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+        
+        // Filter by location
+        if ($request->filled('location')) {
+            $query->where('location', 'like', '%'.$request->location.'%');
+        }
+        
         $projects = $query->orderByDesc('id')->paginate(10);
-        return view('admin.projects.index', compact('projects'));
+        $statuses = Project::distinct()->pluck('status'); // Get all statuses
+        return view('admin.projects.index', compact('projects', 'statuses'));
     }
 
     public function create()

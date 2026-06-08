@@ -15,4 +15,15 @@ class AuthService
         }
         return null;
     }
+
+    public function register(array $data)
+    {
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'status' => 'active',
+        ]);
+        return $user;
+    }
 }

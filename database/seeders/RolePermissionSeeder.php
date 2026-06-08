@@ -20,6 +20,10 @@ class RolePermissionSeeder extends Seeder
         ];
 
         $permissions = [
+            'create projects',
+            'edit projects',
+            'delete projects',
+            'view projects',
             'manage properties',
             'manage projects',
             'manage investors',

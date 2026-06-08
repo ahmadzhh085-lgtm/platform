@@ -26,7 +26,7 @@
                         <td>{{ $property->title }}</td>
                         <td>{{ $property->project->name ?? '-' }}</td>
                         <td>{{ $property->type }}</td>
-                        <td>₦{{ number_format($property->price, 2) }}</td>
+                        <td>${{ number_format($property->price, 2) }}</td>
                         <td>@include('partials.status-badge', ['status' => $property->status])</td>
                         <td>
                             <a href="{{ route('admin.properties.show', $property) }}" class="btn btn-sm btn-info"><i class="bi bi-eye"></i></a>

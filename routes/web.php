@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
+
 Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('admin.dashboard');
@@ -11,9 +14,11 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+Route::middleware(['auth', 'verified'])
+    ->get('/dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard');
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ProjectController;
+
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\InvestorController;
 use App\Http\Controllers\Admin\InvestmentController;
@@ -22,7 +27,7 @@ use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\ReportController;
 
 Route::prefix('admin')
-    ->middleware(['auth', 'verified', 'role:Super Admin|Admin|Employee|Accountant'])
+    ->middleware(['auth', 'verified'])
     ->as('admin.')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

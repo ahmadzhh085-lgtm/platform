@@ -12,7 +12,7 @@
             <dt class="col-sm-3">Type</dt>
             <dd class="col-sm-9">{{ $property->type }}</dd>
             <dt class="col-sm-3">Price</dt>
-            <dd class="col-sm-9">₦{{ number_format($property->price, 2) }}</dd>
+            <dd class="col-sm-9">${{ number_format($property->price, 2) }}</dd>
             <dt class="col-sm-3">Location</dt>
             <dd class="col-sm-9">{{ $property->location }}</dd>
             <dt class="col-sm-3">Area</dt>

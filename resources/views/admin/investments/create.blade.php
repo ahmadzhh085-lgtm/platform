@@ -19,11 +19,11 @@
                 </select>
             </div>
             <div class="col-md-6 mb-3">
-                <label for="project_id" class="form-label">المشروع</label>
-                <select name="project_id" id="project_id" class="form-select" required>
-                    <option value="">اختر المشروع</option>
-                    @foreach($projects as $project)
-                        <option value="{{ $project->id }}" {{ old('project_id') == $project->id ? 'selected' : '' }}>{{ $project->name }}</option>
+                <label for="property_id" class="form-label">العقار</label>
+                <select name="property_id" id="property_id" class="form-select" required>
+                    <option value="">اختر العقار</option>
+                    @foreach($properties as $property)
+                        <option value="{{ $property->id }}" {{ old('property_id') == $property->id ? 'selected' : '' }}>{{ $property->title }}</option>
                     @endforeach
                 </select>
             </div>

@@ -14,7 +14,7 @@
             <dt class="col-sm-3">Status</dt>
             <dd class="col-sm-9">@include('partials.status-badge', ['status' => $project->status])</dd>
             <dt class="col-sm-3">Total Budget</dt>
-            <dd class="col-sm-9">₦{{ number_format($project->total_budget, 2) }}</dd>
+            <dd class="col-sm-9">${{ number_format($project->total_budget, 2) }}</dd>
         </dl>
         <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-warning mt-3">Edit</a>
         <a href="{{ route('admin.projects.index') }}" class="btn btn-secondary mt-3">Back</a>

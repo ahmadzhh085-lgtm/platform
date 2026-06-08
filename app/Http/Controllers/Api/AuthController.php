@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\UserResource;
+use App\Http\Requests\RegisterRequest;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -20,6 +18,17 @@ class AuthController extends Controller
         $this->authService = $authService;
     }
 
+    public function register(RegisterRequest $request)
+    {
+        $user = $this->authService->register($request->validated());
+        $token = $user->createToken('api-token')->plainTextToken;
+
+        return response()->json([
+            'user' => new UserResource($user),
+            'token' => $token,
+        ], 201);
+    }
+
     public function login(LoginRequest $request)
     {
         $user = $this->authService->attemptLogin($request->validated());
@@ -28,6 +37,7 @@ class AuthController extends Controller
                 'message' => 'Invalid credentials.'
             ], 401);
         }
+
         $token = $user->createToken('api-token')->plainTextToken;
         return response()->json([
             'user' => new UserResource($user),

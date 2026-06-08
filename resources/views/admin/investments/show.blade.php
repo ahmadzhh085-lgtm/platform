@@ -10,8 +10,8 @@
             <dl class="row">
                 <dt class="col-sm-3">المستثمر</dt>
                 <dd class="col-sm-9">{{ $investment->investor->name ?? '-' }}</dd>
-                <dt class="col-sm-3">المشروع</dt>
-                <dd class="col-sm-9">{{ $investment->project->name ?? '-' }}</dd>
+                <dt class="col-sm-3">العقار</dt>
+                <dd class="col-sm-9">{{ $investment->property->title ?? '-' }}</dd>
                 <dt class="col-sm-3">المبلغ</dt>
                 <dd class="col-sm-9">{{ number_format($investment->amount, 2) }}</dd>
                 <dt class="col-sm-3">الحالة</dt>

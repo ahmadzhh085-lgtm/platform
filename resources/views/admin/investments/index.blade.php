@@ -19,7 +19,7 @@
                         <tr>
                             <th>#</th>
                             <th>المستثمر</th>
-                            <th>المشروع</th>
+                            <th>العقار</th>
                             <th>المبلغ</th>
                             <th>تاريخ الاستثمار</th>
                             <th>الحالة</th>
@@ -31,7 +31,7 @@
                         <tr>
                             <td>{{ $investment->id }}</td>
                             <td>{{ $investment->investor->name ?? '-' }}</td>
-                            <td>{{ $investment->project->name ?? '-' }}</td>
+                            <td>{{ $investment->property->title ?? '-' }}</td>
                             <td>{{ number_format($investment->amount, 2) }}</td>
                             <td>{{ $investment->created_at->format('Y-m-d') }}</td>
                             <td>@include('partials.status-badge', ['status' => $investment->status])</td>
