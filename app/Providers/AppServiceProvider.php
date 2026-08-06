@@ -19,6 +19,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // تأكد من وجود ملف قاعدة البيانات SQLite
+        if (config('database.default') === 'sqlite') {
+            $database = config('database.connections.sqlite.database');
+            if ($database && !file_exists($database)) {
+                @mkdir(dirname($database), 0755, true);
+                touch($database);
+            }
+        }
     }
 }
