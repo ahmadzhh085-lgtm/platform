@@ -1,0 +1,556 @@
+﻿composer : Installing dependencies from lock file
+At line:1 char:1
++ composer install --no-dev --optimize-autoloader 2>&1 | Out-File build ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Installing dependencies from lock 
+    file:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Verifying lock file contents can be installed on current platform.
+Package operations: 0 installs, 1 update, 26 removals
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing sebastian/exporter (6.3.2)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing sebastian/environment (7.2.1)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing sebastian/diff (6.0.2)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing sebastian/complexity (4.0.1)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/comparator/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/code-unit/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/cli-parser/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-timer/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside "C:\xampp\htdocs\investment-platformnn\vendor
+/sebastian/code-unit-reverse-lookup/src/" which does not appear to be a file 
+nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing sebastian/comparator (6.3.3)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/phpunit/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/code-unit/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/cli-parser/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-timer/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside "C:\xampp\htdocs\investment-platformnn\vendor
+/sebastian/code-unit-reverse-lookup/src/" which does not appear to be a file 
+nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing sebastian/code-unit-reverse-lookup (4.0.1)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/phpunit/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/code-unit/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/cli-parser/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-timer/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing sebastian/code-unit (3.0.3)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/phpunit/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/cli-parser/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-timer/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-file-iterator/src/" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing sebastian/cli-parser (3.0.2)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/phpunit/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-timer/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-invoker/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-code-coverage/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/manifest/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-text-template/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-file-iterator/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/version/src/" which does 
+not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing phpunit/phpunit (11.5.55)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-timer/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-invoker/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-code-coverage/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/manifest/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-text-template/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-file-iterator/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/version/src/" which does 
+not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing phpunit/php-timer (7.0.1)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-invoker/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-code-coverage/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/manifest/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-text-template/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-file-iterator/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/version/src/" which does 
+not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing phpunit/php-text-template (4.0.1)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-invoker/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-code-coverage/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/manifest/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-file-iterator/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/version/src/" which does 
+not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing phpunit/php-invoker (5.0.1)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-code-coverage/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/manifest/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-file-iterator/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/version/src/" which does 
+not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing phpunit/php-file-iterator (5.1.1)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phpunit/php-code-coverage/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/manifest/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/version/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/hamcrest/hamcrest-php/hamcrest" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing phpunit/php-code-coverage (11.0.12)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/manifest/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/version/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/hamcrest/hamcrest-php/hamcrest" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing phar-io/version (3.2.1)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/phar-io/manifest/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/hamcrest/hamcrest-php/hamcrest" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing phar-io/manifest (2.0.4)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/hamcrest/hamcrest-php/hamcrest" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing nunomaduro/collision (v8.9.4)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/hamcrest/hamcrest-php/hamcrest" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing myclabs/deep-copy (1.13.4)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/hamcrest/hamcrest-php/hamcrest" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing mockery/mockery (1.6.12)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/hamcrest/hamcrest-php/hamcrest" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing laravel/sail (v1.59.0)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/hamcrest/hamcrest-php/hamcrest" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing laravel/pint (v1.29.1)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/hamcrest/hamcrest-php/hamcrest" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing laravel/pail (v1.2.6)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/hamcrest/hamcrest-php/hamcrest" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing laravel/breeze (v2.4.1)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/hamcrest/hamcrest-php/hamcrest" 
+which does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing hamcrest/hamcrest-php (v2.1.1)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing filp/whoops (2.18.4)
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/exporter/src/" which 
+does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/environment/src/" 
+which does not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/diff/src/" which does 
+not appear to be a file nor a folder
+Could not scan for classes inside 
+"C:\xampp\htdocs\investment-platformnn\vendor/sebastian/complexity/src/" which 
+does not appear to be a file nor a folder
+> Illuminate\Foundation\ComposerScripts::prePackageUninstall
+  - Removing fakerphp/faker (v1.24.1)
+  - Upgrading laravel/framework (v12.59.0 => v12.61.0): Extracting archive
+ 0/1 [>---------------------------]   0%
+ 1/1 [============================] 100%
+In Filesystem.php line 913:
+                                                                               
+  file_put_contents(C:/xampp/htdocs/investment-platformnn/vendor/composer/ins  
+  talled.php): Failed to open stream: Resource temporarily unavailable         
+                                                                               
+
+install [--prefer-source] [--prefer-dist] [--prefer-install PREFER-INSTALL] 
+[--dry-run] [--download-only] [--dev] [--no-suggest] [--no-dev] 
+[--no-autoloader] [--no-progress] [--no-install] [--audit] [--audit-format 
+AUDIT-FORMAT] [-v|vv|vvv|--verbose] [-o|--optimize-autoloader] 
+[-a|--classmap-authoritative] [--apcu-autoloader] [--apcu-autoloader-prefix 
+APCU-AUTOLOADER-PREFIX] [--ignore-platform-req IGNORE-PLATFORM-REQ] 
+[--ignore-platform-reqs] [--] [<packages>...]
+
