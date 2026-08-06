@@ -22,6 +22,7 @@ Route::get('projects', [ProjectController::class, 'index']);
 Route::get('projects/{project}', [ProjectController::class, 'show']);
 
 // Public Property routes (listing, show)
+// Usage: GET /api/properties?project_id=1 for properties of a specific project
 Route::get('properties', [PropertyController::class, 'index']);
 Route::get('properties/{property}', [PropertyController::class, 'show']);
 
@@ -37,12 +38,8 @@ Route::get('payments/{payment}', [PaymentController::class, 'show']);
 Route::get('investments', [InvestmentController::class, 'index']);
 Route::get('investments/{investment}', [InvestmentController::class, 'show']);
 
-// Protected Property, Payment, and Investment routes (create, update, delete)
+// Protected Payment and Investment routes (create, update, delete)
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post('properties', [PropertyController::class, 'store']);
-    Route::put('properties/{property}', [PropertyController::class, 'update']);
-    Route::delete('properties/{property}', [PropertyController::class, 'destroy']);
-
     Route::post('payments', [PaymentController::class, 'store']);
     Route::put('payments/{payment}', [PaymentController::class, 'update']);
     Route::delete('payments/{payment}', [PaymentController::class, 'destroy']);

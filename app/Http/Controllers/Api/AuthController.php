@@ -31,10 +31,13 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $user = $this->authService->attemptLogin($request->validated());
+        // Validate credentials using AuthService instead of session-based Auth::attempt()
+        $credentials = $request->validated();
+        $user = $this->authService->attemptLogin($credentials);
+
         if (!$user) {
             return response()->json([
-                'message' => 'Invalid credentials.'
+                'message' => 'The provided credentials are incorrect.',
             ], 401);
         }
 
@@ -47,7 +50,8 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        // Be null-safe in case there's no current access token
+        $request->user()->currentAccessToken()?->delete();
         return response()->json(['message' => 'Logged out successfully.']);
     }
 

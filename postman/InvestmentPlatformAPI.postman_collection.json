@@ -240,85 +240,82 @@
                     }
                 },
                 {
-                    "name": "Create Property",
+                    "name": "Filter by Project",
                     "request": {
-                        "auth": {
-                            "type": "bearer",
-                            "bearer": [
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/properties?project_id=1",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "properties"],
+                            "query": [
                                 {
-                                    "key": "token",
-                                    "value": "{{token}}",
-                                    "type": "string"
+                                    "key": "project_id",
+                                    "value": "1"
                                 }
                             ]
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\n  \"project_id\": 1,\n  \"title\": \"Apartment 101\",\n  \"type\": \"residential\",\n  \"price\": 500000,\n  \"location\": \"Nasr City\",\n  \"area\": 120,\n  \"status\": \"available\",\n  \"image\": \"/images/property-101.jpg\"\n}"
-                        },
-                        "url": {
-                            "raw": "{{base_url}}/api/properties",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "properties"]
                         }
                     }
                 },
                 {
-                    "name": "Update Property",
+                    "name": "Filter by Status",
                     "request": {
-                        "auth": {
-                            "type": "bearer",
-                            "bearer": [
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/properties?status=available",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "properties"],
+                            "query": [
                                 {
-                                    "key": "token",
-                                    "value": "{{token}}",
-                                    "type": "string"
+                                    "key": "status",
+                                    "value": "available"
                                 }
                             ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\n  \"status\": \"sold\"\n}"
-                        },
-                        "url": {
-                            "raw": "{{base_url}}/api/properties/{{property_id}}",
-                            "host": ["{{base_url}}"],
-                            "path": ["api", "properties", "{{property_id}}"]
                         }
                     }
                 },
                 {
-                    "name": "Delete Property",
+                    "name": "Search by Title/Location",
                     "request": {
-                        "auth": {
-                            "type": "bearer",
-                            "bearer": [
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{base_url}}/api/properties?search=villa",
+                            "host": ["{{base_url}}"],
+                            "path": ["api", "properties"],
+                            "query": [
                                 {
-                                    "key": "token",
-                                    "value": "{{token}}",
-                                    "type": "string"
+                                    "key": "search",
+                                    "value": "villa"
                                 }
                             ]
-                        },
-                        "method": "DELETE",
+                        }
+                    }
+                },
+                {
+                    "name": "Combined Search & Filter",
+                    "request": {
+                        "method": "GET",
                         "url": {
-                            "raw": "{{base_url}}/api/properties/{{property_id}}",
+                            "raw": "{{base_url}}/api/properties?project_id=1&status=available&search=villa&per_page=20",
                             "host": ["{{base_url}}"],
-                            "path": ["api", "properties", "{{property_id}}"]
+                            "path": ["api", "properties"],
+                            "query": [
+                                {
+                                    "key": "project_id",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "available"
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "villa"
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "20"
+                                }
+                            ]
                         }
                     }
                 }
