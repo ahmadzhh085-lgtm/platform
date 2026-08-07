@@ -3,7 +3,8 @@ FROM heroku/heroku:24-build
 USER root
 
 # Install PHP and dependencies
-RUN apt-get update && apt-get install -y \
+RUN mkdir -p /var/lib/apt/lists/partial && chmod -R 755 /var/lib/apt/lists && \
+    apt-get update && apt-get install -y \
     php8.2 \
     php8.2-cli \
     php8.2-fpm \
