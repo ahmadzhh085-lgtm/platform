@@ -31,6 +31,8 @@ php artisan migrate --force --no-interaction 2>&1 || echo "Migrations completed 
 
 echo "Clearing old caches..."
 php artisan config:clear 2>&1 || true
+php artisan route:clear 2>&1 || true
+php artisan view:clear 2>&1 || true
 php artisan cache:clear 2>&1 || true
 
 echo "Caching configurations..."
