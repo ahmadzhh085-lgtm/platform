@@ -5,18 +5,17 @@ USER root
 # Install PHP and dependencies
 RUN mkdir -p /var/lib/apt/lists/partial && chmod -R 755 /var/lib/apt/lists && \
     apt-get update && apt-get install -y \
-    php8.2 \
-    php8.2-cli \
-    php8.2-fpm \
-    php8.2-mysql \
-    php8.2-sqlite3 \
-    php8.2-pdo \
-    php8.2-mbstring \
-    php8.2-xml \
-    php8.2-curl \
-    php8.2-gd \
-    php8.2-zip \
-    php8.2-bcmath \
+    php \
+    php-cli \
+    php-fpm \
+    php-mysql \
+    php-sqlite3 \
+    php-mbstring \
+    php-xml \
+    php-curl \
+    php-gd \
+    php-zip \
+    php-bcmath \
     composer \
     npm \
     && rm -rf /var/lib/apt/lists/*
