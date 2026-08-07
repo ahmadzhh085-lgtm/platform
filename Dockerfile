@@ -1,5 +1,7 @@
 FROM heroku/heroku:24-build
 
+USER root
+
 # Install PHP and dependencies
 RUN apt-get update && apt-get install -y \
     php8.2 \
