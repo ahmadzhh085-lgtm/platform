@@ -1,33 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm border-bottom px-4">
-    <div class="container-fluid">
-        <form class="d-flex me-3">
-            <input class="form-control form-control-sm me-2" type="search" placeholder="Search..." aria-label="Search">
-        </form>
-        <ul class="navbar-nav ms-auto align-items-center">
-            <li class="nav-item dropdown me-3">
-                <a class="nav-link position-relative" href="#" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-bell fs-5"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+<header class="header header-sticky border-bottom bg-white shadow-sm">
+    <div class="container-fluid d-flex justify-content-between align-items-center px-4 py-3">
+        <div>
+            <h4 class="mb-0 fw-semibold text-dark">@yield('title', 'Dashboard')</h4>
+            <small class="text-muted">Investment platform overview</small>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+            <form class="d-none d-lg-flex">
+                <div class="input-group input-group-sm">
+                    <span class="input-group-text bg-light border-0"><i class="bi bi-search"></i></span>
+                    <input class="form-control border-0 bg-light" type="search" placeholder="Search..." aria-label="Search">
+                </div>
+            </form>
+
+            <button class="btn btn-outline-secondary btn-sm" type="button">
+                <i class="bi bi-bell"></i>
+            </button>
+
+            <div class="dropdown">
+                <a class="d-flex align-items-center gap-2 text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'User') }}" class="rounded-circle" width="36" height="36" alt="User">
+                    <span class="fw-semibold text-dark">{{ auth()->user()->name ?? 'User' }}</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-                    <li><a class="dropdown-item" href="#">No new notifications</a></li>
-                </ul>
-            </li>
-            <li class="nav-item me-3">
-                <button class="btn btn-outline-secondary btn-sm" id="darkModeToggle"><i class="bi bi-moon"></i></button>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name ?? 'User') }}" class="rounded-circle me-2" width="32" height="32" alt="User">
-                    <span>{{ auth()->user()->name ?? 'User' }}</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                 </ul>
-            </li>
-        </ul>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+            </div>
+        </div>
     </div>
-</nav>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
+</header>

@@ -1,0 +1,61 @@
+/* ملف بوتستراب مخصص للمشروع */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+:root {
+    --cui-primary: #2563eb;
+    --cui-secondary: #475569;
+    --cui-success: #16a34a;
+    --cui-info: #0ea5e9;
+    --cui-warning: #f59e0b;
+    --cui-danger: #dc2626;
+    --cui-body-bg: #f5f7fb;
+}
+
+body {
+    background-color: var(--cui-body-bg);
+    color: #0f172a;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar {
+    width: 270px;
+    background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.82);
+    border-radius: 0.75rem;
+    margin: 0.2rem 0.75rem;
+    padding: 0.7rem 0.9rem;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    background: rgba(37, 99, 235, 0.2);
+    color: #fff;
+}
+
+.header {
+    backdrop-filter: blur(10px);
+}
+
+.card {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.8rem 1.5rem rgba(15, 23, 42, 0.08) !important;
+}
+
+.btn-primary {
+    background-color: var(--cui-primary);
+    border-color: var(--cui-primary);
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}

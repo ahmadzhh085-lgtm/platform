@@ -1,16 +1,62 @@
-<nav id="sidebar" class="sidebar bg-white shadow-sm border-end">
-    <div class="sidebar-header p-3 mb-2 border-bottom">
-        <span class="fs-4 fw-bold">RealEstate Admin</span>
+<div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
+    <div class="sidebar-header border-bottom border-white border-opacity-10 px-3 py-4">
+        <div class="d-flex align-items-center gap-3">
+            <div class="rounded-circle bg-primary bg-opacity-10 p-2 text-primary">
+                <i class="bi bi-pie-chart-fill fs-5"></i>
+            </div>
+            <div>
+                <div class="fw-bold text-white">InvestHub</div>
+                <small class="text-white-50">Admin Panel</small>
+            </div>
+        </div>
     </div>
-    <ul class="nav flex-column">
-        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="{{ route('admin.dashboard') }}"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="{{ route('admin.projects.index') }}"><i class="bi bi-building me-2"></i> Projects</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="{{ route('admin.properties.index') }}"><i class="bi bi-house-door me-2"></i> Properties</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="{{ route('admin.investors.index') }}"><i class="bi bi-people me-2"></i> Investors</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="{{ route('admin.investments.index') }}"><i class="bi bi-cash-stack me-2"></i> Investments</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="{{ route('admin.payments.index') }}"><i class="bi bi-credit-card me-2"></i> Payments</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="{{ route('admin.employees.index') }}"><i class="bi bi-person-badge me-2"></i> Employees</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="{{ route('admin.reports.index') }}"><i class="bi bi-bar-chart-line me-2"></i> Reports</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center" href="{{ route('admin.settings') }}"><i class="bi bi-gear me-2"></i> Settings</a></li>
+
+    <ul class="sidebar-nav mt-3">
+        <li class="nav-title px-3 text-uppercase small text-white-50">Main</li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+                <i class="bi bi-speedometer2 me-2"></i> Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}" href="{{ route('admin.projects.index') }}">
+                <i class="bi bi-building me-2"></i> Projects
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.properties.*') ? 'active' : '' }}" href="{{ route('admin.properties.index') }}">
+                <i class="bi bi-house-door me-2"></i> Properties
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.investors.*') ? 'active' : '' }}" href="{{ route('admin.investors.index') }}">
+                <i class="bi bi-people me-2"></i> Investors
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.investments.*') ? 'active' : '' }}" href="{{ route('admin.investments.index') }}">
+                <i class="bi bi-cash-stack me-2"></i> Investments
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.payments.*') ? 'active' : '' }}" href="{{ route('admin.payments.index') }}">
+                <i class="bi bi-credit-card me-2"></i> Payments
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.employees.*') ? 'active' : '' }}" href="{{ route('admin.employees.index') }}">
+                <i class="bi bi-person-badge me-2"></i> Employees
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}" href="{{ route('admin.reports.index') }}">
+                <i class="bi bi-bar-chart-line me-2"></i> Reports
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.settings') ? 'active' : '' }}" href="{{ route('admin.settings') }}">
+                <i class="bi bi-gear me-2"></i> Settings
+            </a>
+        </li>
     </ul>
-</nav>
+</div>

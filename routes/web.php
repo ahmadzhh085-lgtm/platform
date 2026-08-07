@@ -12,7 +12,7 @@ Route::get('/', function () {
         return redirect()->route('dashboard');
     }
 
-    return view('welcome');
+    return view('home');
 });
 
 Route::middleware(['auth', 'verified'])
