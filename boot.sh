@@ -40,5 +40,8 @@ php artisan config:cache 2>&1 || true
 
 echo "Build complete. Starting server..."
 
-# ابدأ التطبيق باستخدام Apache
-exec vendor/bin/heroku-php-apache2 public/
+HOST="${HOST:-0.0.0.0}"
+PORT="${PORT:-8000}"
+
+echo "Starting Laravel development server on $HOST:$PORT"
+exec php artisan serve --host="$HOST" --port="$PORT"
