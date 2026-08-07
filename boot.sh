@@ -11,10 +11,12 @@ mkdir -p "$DB_DIR"
 chmod -R 777 "$DB_DIR"
 
 # أنشئ ملف قاعدة البيانات إن لم يكن موجوداً
-if [ ! -f "$DB_PATH" ]; then
-  echo "Creating database file: $DB_PATH"
-  touch "$DB_PATH"
-  chmod 666 "$DB_PATH"
+if [ "${DB_CONNECTION:-sqlite}" = "sqlite" ]; then
+  if [ ! -f "$DB_PATH" ]; then
+    echo "Creating database file: $DB_PATH"
+    touch "$DB_PATH"
+    chmod 666 "$DB_PATH"
+  fi
 fi
 
 # تأكد من وجود مجلد storage بصلاحيات صحيحة
