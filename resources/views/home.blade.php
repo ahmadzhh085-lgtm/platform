@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 text-center">
-                        <img src="/images/dashboard-preview.png" alt="Dashboard preview" class="img-fluid rounded-4 shadow-sm">
+                        <img src="{{ asset('images/dashboard-preview.svg') }}" alt="Dashboard preview" class="img-fluid rounded-4 shadow-sm">
                     </div>
                 </div>
             </div>
