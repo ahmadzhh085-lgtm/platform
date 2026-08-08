@@ -28,6 +28,9 @@ echo "DB_CONNECTION: ${DB_CONNECTION:-sqlite}"
 echo "Running migrations..."
 php artisan migrate --force --no-interaction || true
 
+echo "Seeding admin user..."
+php artisan db:seed --class=AdminUserSeeder --force || true
+
 echo "Clearing old caches..."
 php artisan config:clear || true
 php artisan route:clear || true
