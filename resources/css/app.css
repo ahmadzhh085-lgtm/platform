@@ -1,3 +1,11 @@
-@import "./bootstrap-custom.css";
+/* 1. Bootstrap CSS (foundation) */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* 2. CoreUI CSS (extends bootstrap) */
 @import "@coreui/coreui/dist/css/coreui.min.css";
+
+/* 3. Bootstrap Icons CSS */
 @import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* 4. Custom CSS (project overrides) */
+@import "./bootstrap-custom.css";
