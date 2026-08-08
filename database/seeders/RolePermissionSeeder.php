@@ -13,6 +13,7 @@ class RolePermissionSeeder extends Seeder
         $roles = [
             'Super Admin',
             'Admin',
+            'Manager',
             'Employee',
             'Accountant',
             'موظف المالية',
@@ -39,10 +40,15 @@ class RolePermissionSeeder extends Seeder
 
         foreach ($roles as $role) {
             $roleModel = Role::firstOrCreate(['name' => $role]);
+
             if ($role === 'Super Admin') {
                 $roleModel->syncPermissions($permissions);
-            } elseif ($role === 'Admin') {
+            } elseif ($role === 'Admin' || $role === 'Manager') {
                 $roleModel->syncPermissions([
+                    'create projects',
+                    'edit projects',
+                    'delete projects',
+                    'view projects',
                     'manage properties',
                     'manage projects',
                     'manage investors',
