@@ -1,5 +1,4 @@
-/* ملف بوتستراب مخصص للمشروع */
-@import "bootstrap/dist/css/bootstrap.min.css";
+/* ملف التخصيصات الخاصة بالمشروع (يعتمد على Bootstrap و CoreUI المُحمّلين مسبقاً) */
 
 :root {
     --cui-primary: #2563eb;
