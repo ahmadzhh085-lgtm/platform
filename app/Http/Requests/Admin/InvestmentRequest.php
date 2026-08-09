@@ -15,7 +15,7 @@ class InvestmentRequest extends FormRequest
     {
         return [
             'investor_id' => ['required', 'exists:investors,id'],
-            'project_id' => ['required', 'exists:projects,id'],
+            'property_id' => ['required', 'exists:properties,id'],
             'amount' => ['required', 'numeric', 'min:0'],
             'status' => ['required', 'in:pending,approved,rejected'],
         ];
