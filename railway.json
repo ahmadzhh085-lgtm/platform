@@ -6,7 +6,7 @@
     },
     "deploy": {
         "startCommand": "sh boot.sh",
-        "preDeployCommand": "php artisan migrate --force",
+        "preDeployCommand": "php artisan migrate --force && php artisan db:seed --class=RolePermissionSeeder --force && php artisan db:seed --class=AdminUserSeeder --force",
         "restartPolicyMaxRetries": 5,
         "restartPolicyWindowSeconds": 60
     },
