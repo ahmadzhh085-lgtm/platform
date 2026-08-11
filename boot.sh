@@ -37,15 +37,14 @@ php artisan route:clear || true
 php artisan view:clear || true
 php artisan cache:clear || true
 
-echo "Caching configurations..."
-php artisan config:cache || true
+echo "Caching routes and views (config caching disabled to keep Vite manifest resolution working)..."
 php artisan route:cache || true
 php artisan view:cache || true
 
 echo "Starting Laravel server..."
 
-HOST="${HOST:-0.0.0.0}"
 PORT="${PORT:-8000}"
 
-echo "Starting Laravel development server on $HOST:$PORT"
-exec php artisan serve --host="$HOST" --port="$PORT"
+echo "Starting Laravel server on 0.0.0.0:$PORT"
+exec php artisan serve --host=0.0.0.0 --port="$PORT"
+
