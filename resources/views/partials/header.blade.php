@@ -6,6 +6,10 @@
         </div>
 
         <div class="d-flex align-items-center gap-2">
+            <button id="sidebarToggle" class="btn btn-outline-secondary btn-sm" type="button" aria-label="Toggle sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+
             <form class="d-none d-lg-flex">
                 <div class="input-group input-group-sm">
                     <span class="input-group-text bg-light border-0"><i class="bi bi-search"></i></span>

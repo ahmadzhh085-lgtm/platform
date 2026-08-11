@@ -2,9 +2,11 @@ FROM heroku/heroku:24-build
 
 USER root
 
-# Install PHP and dependencies
+# Install PHP and Node.js 20 dependencies
 RUN mkdir -p /var/lib/apt/lists/partial && chmod -R 755 /var/lib/apt/lists && \
-    apt-get update && apt-get install -y \
+    apt-get update && apt-get install -y curl ca-certificates gnupg && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y \
     php \
     php-cli \
     php-fpm \
@@ -17,7 +19,7 @@ RUN mkdir -p /var/lib/apt/lists/partial && chmod -R 755 /var/lib/apt/lists && \
     php-zip \
     php-bcmath \
     composer \
-    npm \
+    nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
