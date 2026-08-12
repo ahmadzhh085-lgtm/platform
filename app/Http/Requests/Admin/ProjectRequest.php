@@ -8,8 +8,13 @@ class ProjectRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return $this->user()->can('create projects')
-            || $this->user()->can('manage projects');
+        $user = $this->user();
+
+        return $user && (
+            $user->hasRole('Super Admin')
+            || $user->can('create projects')
+            || $user->can('manage projects')
+        );
     }
 
     public function rules(): array
