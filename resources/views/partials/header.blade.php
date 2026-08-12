@@ -1,8 +1,14 @@
 <header class="header header-sticky border-bottom bg-white shadow-sm">
-    <div class="container-fluid d-flex justify-content-between align-items-center px-4 py-3">
-        <div>
-            <h4 class="mb-0 fw-semibold text-dark">@yield('title', 'Dashboard')</h4>
-            <small class="text-muted">Investment platform overview</small>
+    <div class="container-fluid d-flex justify-content-between align-items-center px-3 px-lg-4 py-3 gap-3">
+        <div class="d-flex align-items-center gap-3">
+            <button id="sidebarToggle" class="sidebar-toggle d-flex align-items-center justify-content-center" type="button" aria-label="Toggle sidebar">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <div>
+                <h4 class="mb-0 fw-semibold text-dark">@yield('title', 'Dashboard')</h4>
+                <small class="text-muted">Investment platform overview</small>
+            </div>
         </div>
 
         <div class="d-flex align-items-center gap-2">

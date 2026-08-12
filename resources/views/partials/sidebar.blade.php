@@ -1,13 +1,19 @@
-<div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
+<aside class="sidebar sidebar-dark border-end" id="sidebar">
     <div class="sidebar-header border-bottom border-white border-opacity-10 px-3 py-4">
-        <div class="d-flex align-items-center gap-3">
-            <div class="rounded-circle bg-primary bg-opacity-10 p-2 text-primary">
-                <i class="bi bi-pie-chart-fill fs-5"></i>
+        <div class="d-flex align-items-center justify-content-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+                <div class="rounded-circle bg-primary bg-opacity-10 p-2 text-primary">
+                    <i class="bi bi-pie-chart-fill fs-5"></i>
+                </div>
+                <div class="brand-text">
+                    <div class="fw-bold text-white">InvestHub</div>
+                    <small class="text-white-50">Admin Panel</small>
+                </div>
             </div>
-            <div>
-                <div class="fw-bold text-white">InvestHub</div>
-                <small class="text-white-50">Admin Panel</small>
-            </div>
+
+            <button class="sidebar-close d-lg-none" type="button" aria-label="Close sidebar">
+                <i class="bi bi-x-lg"></i>
+            </button>
         </div>
     </div>
 
@@ -15,48 +21,50 @@
         <li class="nav-title px-3 text-uppercase small text-white-50">Main</li>
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
-                <i class="bi bi-speedometer2 me-2"></i> Dashboard
+                <i class="bi bi-speedometer2"></i> <span>Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}" href="{{ route('admin.projects.index') }}">
-                <i class="bi bi-building me-2"></i> Projects
+                <i class="bi bi-building"></i> <span>Projects</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.properties.*') ? 'active' : '' }}" href="{{ route('admin.properties.index') }}">
-                <i class="bi bi-house-door me-2"></i> Properties
+                <i class="bi bi-house-door"></i> <span>Properties</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.investors.*') ? 'active' : '' }}" href="{{ route('admin.investors.index') }}">
-                <i class="bi bi-people me-2"></i> Investors
+                <i class="bi bi-people"></i> <span>Investors</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.investments.*') ? 'active' : '' }}" href="{{ route('admin.investments.index') }}">
-                <i class="bi bi-cash-stack me-2"></i> Investments
+                <i class="bi bi-cash-stack"></i> <span>Investments</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.payments.*') ? 'active' : '' }}" href="{{ route('admin.payments.index') }}">
-                <i class="bi bi-credit-card me-2"></i> Payments
+                <i class="bi bi-credit-card"></i> <span>Payments</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.employees.*') ? 'active' : '' }}" href="{{ route('admin.employees.index') }}">
-                <i class="bi bi-person-badge me-2"></i> Employees
+                <i class="bi bi-person-badge"></i> <span>Employees</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}" href="{{ route('admin.reports.index') }}">
-                <i class="bi bi-bar-chart-line me-2"></i> Reports
+                <i class="bi bi-bar-chart-line"></i> <span>Reports</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.settings') ? 'active' : '' }}" href="{{ route('admin.settings') }}">
-                <i class="bi bi-gear me-2"></i> Settings
+                <i class="bi bi-gear"></i> <span>Settings</span>
             </a>
         </li>
     </ul>
-</div>
+</aside>
+
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
