@@ -41,10 +41,15 @@ class PropertyController extends Controller
         
         if ($request->hasFile('image')) {
             try {
+                \Log::info('Starting image upload', ['file' => $request->file('image')->getClientOriginalName()]);
                 $cloudinary = new CloudinaryService();
                 $data['image'] = $cloudinary->upload($request->file('image'));
+                \Log::info('Image uploaded successfully', ['url' => $data['image']]);
             } catch (\Exception $e) {
-                return redirect()->back()->with('error', '❌ خطأ في رفع الصورة: ' . $e->getMessage());
+                \Log::error('Image upload failed in store', ['error' => $e->getMessage()]);
+                return redirect()->back()
+                    ->withInput()
+                    ->with('error', '❌ خطأ في رفع الصورة: ' . $e->getMessage());
             }
         }
         
@@ -73,6 +78,8 @@ class PropertyController extends Controller
         
         if ($request->hasFile('image')) {
             try {
+                \Log::info('Starting image update', ['file' => $request->file('image')->getClientOriginalName()]);
+                
                 // حذف الصورة القديمة من Cloudinary
                 if ($property->image) {
                     $cloudinary = new CloudinaryService();
@@ -82,8 +89,13 @@ class PropertyController extends Controller
                 // رفع الصورة الجديدة
                 $cloudinary = new CloudinaryService();
                 $data['image'] = $cloudinary->upload($request->file('image'));
+                
+                \Log::info('Image updated successfully', ['url' => $data['image']]);
             } catch (\Exception $e) {
-                return redirect()->back()->with('error', '❌ خطأ في رفع الصورة: ' . $e->getMessage());
+                \Log::error('Image update failed', ['error' => $e->getMessage()]);
+                return redirect()->back()
+                    ->withInput()
+                    ->with('error', '❌ خطأ في رفع الصورة: ' . $e->getMessage());
             }
         }
         

@@ -11,11 +11,32 @@ class CloudinaryService
 
     public function __construct()
     {
-        $this->cloudinary = new Cloudinary([
-            'cloud_name' => config('cloudinary.cloud_name'),
-            'api_key' => config('cloudinary.api_key'),
-            'api_secret' => config('cloudinary.api_secret'),
-        ]);
+        $cloudName = config('cloudinary.cloud_name');
+        $apiKey = config('cloudinary.api_key');
+        $apiSecret = config('cloudinary.api_secret');
+
+        // تحقق من البيانات
+        if (!$cloudName || !$apiKey || !$apiSecret) {
+            \Log::critical('Cloudinary credentials missing!', [
+                'cloud_name' => $cloudName ? '***' : 'MISSING',
+                'api_key' => $apiKey ? '***' : 'MISSING',
+                'api_secret' => $apiSecret ? '***' : 'MISSING',
+            ]);
+            throw new \Exception('❌ بيانات Cloudinary غير موجودة. تحقق من متغيرات البيئة!');
+        }
+
+        try {
+            $this->cloudinary = new Cloudinary([
+                'cloud_name' => $cloudName,
+                'api_key' => $apiKey,
+                'api_secret' => $apiSecret,
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('Failed to initialize Cloudinary', [
+                'error' => $e->getMessage(),
+            ]);
+            throw new \Exception('❌ خطأ في الاتصال بـ Cloudinary: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -28,6 +49,12 @@ class CloudinaryService
     public function upload(UploadedFile $file, string $folder = 'investment-platform'): string
     {
         try {
+            // التحقق من البيانات الأساسية
+            if (!config('cloudinary.cloud_name') || config('cloudinary.cloud_name') === 'your_cloud_name') {
+                \Log::warning('Cloudinary credentials not configured, using local storage');
+                return $this->uploadLocal($file, $folder);
+            }
+
             $config = config('cloudinary.upload');
 
             $uploadOptions = [
@@ -35,6 +62,7 @@ class CloudinaryService
                 'resource_type' => 'auto',
                 'quality' => 'auto',
                 'fetch_format' => 'auto',
+                'timeout' => 60, // 60 ثانية timeout
             ];
 
             // إضافة التحويلات إذا كانت موجودة
@@ -42,15 +70,58 @@ class CloudinaryService
                 $uploadOptions['transformation'] = [$config['transformation']];
             }
 
+            \Log::info('Attempting to upload to Cloudinary', [
+                'file' => $file->getClientOriginalName(),
+                'size' => $file->getSize(),
+                'folder' => $uploadOptions['folder'],
+            ]);
+
             $response = $this->cloudinary->uploadApi()->upload(
                 $file->getRealPath(),
                 $uploadOptions
             );
 
-            return $response['secure_url'];
+            $imageUrl = $response['secure_url'];
+
+            \Log::info('Successfully uploaded to Cloudinary', [
+                'url' => $imageUrl,
+                'public_id' => $response['public_id'] ?? 'N/A',
+            ]);
+
+            return $imageUrl;
         } catch (\Exception $e) {
-            \Log::error('Cloudinary Upload Error: ' . $e->getMessage());
-            throw $e;
+            \Log::error('Cloudinary Upload Error', [
+                'error' => $e->getMessage(),
+                'file' => $file->getClientOriginalName(),
+                'code' => $e->getCode(),
+            ]);
+
+            // رجوع للتخزين المحلي كـ fallback
+            \Log::info('Falling back to local storage after Cloudinary failure');
+            return $this->uploadLocal($file, $folder);
+        }
+    }
+
+    /**
+     * رفع محلي بديل (للتطوير أو كـ fallback)
+     */
+    private function uploadLocal(UploadedFile $file, string $folder = 'investment-platform'): string
+    {
+        try {
+            $path = $file->store("{$folder}/properties", 'public');
+            $url = url('storage/' . $path);
+
+            \Log::info('Uploaded to local storage', [
+                'path' => $path,
+                'url' => $url,
+            ]);
+
+            return $url;
+        } catch (\Exception $e) {
+            \Log::error('Local storage upload failed', [
+                'error' => $e->getMessage(),
+            ]);
+            throw new \Exception('❌ فشل رفع الصورة محلياً أيضاً: ' . $e->getMessage());
         }
     }
 
@@ -63,18 +134,51 @@ class CloudinaryService
     public function delete(string $imageUrl): bool
     {
         try {
+            // تحقق إذا كانت صورة محلية
+            if (strpos($imageUrl, 'storage/') !== false) {
+                return $this->deleteLocal($imageUrl);
+            }
+
             // استخراج public_id من الرابط
             $publicId = $this->extractPublicId($imageUrl);
 
             if (!$publicId) {
+                \Log::warning('Could not extract public_id from URL', ['url' => $imageUrl]);
                 return false;
             }
 
             $this->cloudinary->uploadApi()->destroy($publicId);
 
+            \Log::info('Deleted from Cloudinary', ['public_id' => $publicId]);
             return true;
         } catch (\Exception $e) {
-            \Log::error('Cloudinary Delete Error: ' . $e->getMessage());
+            \Log::error('Cloudinary Delete Error', [
+                'error' => $e->getMessage(),
+                'url' => $imageUrl,
+            ]);
+            return false;
+        }
+    }
+
+    /**
+     * حذف صورة محلية
+     */
+    private function deleteLocal(string $imageUrl): bool
+    {
+        try {
+            // استخراج المسار من الـ URL
+            $path = str_replace(url('storage/') . '/', '', $imageUrl);
+            $fullPath = storage_path('app/public/' . $path);
+
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
+                \Log::info('Deleted local file', ['path' => $path]);
+                return true;
+            }
+
+            return false;
+        } catch (\Exception $e) {
+            \Log::error('Local file delete error', ['error' => $e->getMessage()]);
             return false;
         }
     }
