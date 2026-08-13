@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Property;
 use App\Models\Project;
+use App\Services\CloudinaryService;
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller
@@ -37,11 +38,18 @@ class PropertyController extends Controller
             'status' => 'required|string|max:50',
             'image' => 'nullable|image|max:2048',
         ]);
+        
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('properties', 'public');
+            try {
+                $cloudinary = new CloudinaryService();
+                $data['image'] = $cloudinary->upload($request->file('image'));
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', '❌ خطأ في رفع الصورة: ' . $e->getMessage());
+            }
         }
+        
         Property::create($data);
-        return redirect()->route('admin.properties.index')->with('success', 'Property created successfully.');
+        return redirect()->route('admin.properties.index')->with('success', '✅ تم إنشاء المنتج بنجاح.');
     }
 
     public function edit(Property $property)
@@ -62,17 +70,41 @@ class PropertyController extends Controller
             'status' => 'required|string|max:50',
             'image' => 'nullable|image|max:2048',
         ]);
+        
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('properties', 'public');
+            try {
+                // حذف الصورة القديمة من Cloudinary
+                if ($property->image) {
+                    $cloudinary = new CloudinaryService();
+                    $cloudinary->delete($property->image);
+                }
+                
+                // رفع الصورة الجديدة
+                $cloudinary = new CloudinaryService();
+                $data['image'] = $cloudinary->upload($request->file('image'));
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', '❌ خطأ في رفع الصورة: ' . $e->getMessage());
+            }
         }
+        
         $property->update($data);
-        return redirect()->route('admin.properties.index')->with('success', 'Property updated successfully.');
+        return redirect()->route('admin.properties.index')->with('success', '✅ تم تحديث المنتج بنجاح.');
     }
 
     public function destroy(Property $property)
     {
+        // حذف الصورة من Cloudinary
+        if ($property->image) {
+            try {
+                $cloudinary = new CloudinaryService();
+                $cloudinary->delete($property->image);
+            } catch (\Exception $e) {
+                \Log::warning('Failed to delete image from Cloudinary: ' . $e->getMessage());
+            }
+        }
+        
         $property->delete();
-        return redirect()->route('admin.properties.index')->with('success', 'Property deleted successfully.');
+        return redirect()->route('admin.properties.index')->with('success', '✅ تم حذف المنتج بنجاح.');
     }
 
     public function show(Property $property)

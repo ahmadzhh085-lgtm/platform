@@ -7,6 +7,7 @@ use App\Http\Requests\PropertyRequest;
 use App\Http\Resources\PropertyResource;
 use App\Models\Property;
 use App\Services\PropertyService;
+use App\Services\CloudinaryService;
 use Illuminate\Http\Request;
 
 class PropertyController extends Controller

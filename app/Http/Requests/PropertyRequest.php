@@ -21,7 +21,7 @@ class PropertyRequest extends FormRequest
             'location' => 'nullable|string|max:255',
             'area' => 'nullable|numeric|min:0',
             'status' => 'required|string|max:50',
-            'image' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,webp,gif|max:2048',
         ];
     }
 }

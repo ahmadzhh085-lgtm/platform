@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class PropertyService
 {
+    protected CloudinaryService $cloudinary;
+
+    public function __construct()
+    {
+        $this->cloudinary = new CloudinaryService();
+    }
+
     public function list(Request $request)
     {
         return Property::with('project')
@@ -29,17 +36,52 @@ class PropertyService
 
     public function create(array $data)
     {
+        // معالجة الصورة إذا كانت موجودة في البيانات
+        if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
+            try {
+                $data['image'] = $this->cloudinary->upload($data['image']);
+            } catch (\Exception $e) {
+                \Log::error('Failed to upload image: ' . $e->getMessage());
+                unset($data['image']);
+            }
+        }
+
         return Property::create($data);
     }
 
     public function update(Property $property, array $data)
     {
+        // معالجة الصورة الجديدة إذا كانت موجودة
+        if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
+            try {
+                // حذف الصورة القديمة
+                if ($property->image) {
+                    $this->cloudinary->delete($property->image);
+                }
+                
+                // رفع الصورة الجديدة
+                $data['image'] = $this->cloudinary->upload($data['image']);
+            } catch (\Exception $e) {
+                \Log::error('Failed to upload image: ' . $e->getMessage());
+                unset($data['image']);
+            }
+        }
+
         $property->update($data);
         return $property;
     }
 
     public function delete(Property $property)
     {
+        // حذف الصورة من Cloudinary
+        if ($property->image) {
+            try {
+                $this->cloudinary->delete($property->image);
+            } catch (\Exception $e) {
+                \Log::warning('Failed to delete image from Cloudinary: ' . $e->getMessage());
+            }
+        }
+
         $property->delete();
     }
 }
