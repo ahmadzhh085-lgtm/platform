@@ -24,7 +24,7 @@
         <x-admin.card title="Active Projects" icon="bi-building" value="18" color="info" />
     </div>
     <div class="col-xl-3 col-md-6">
-        <x-admin.card title="Monthly Revenue" icon="bi-bar-chart-line" value="$35K" color="warning" />
+        <x-admin.card title="Pending Purchase Requests" icon="bi-bag-check" value="{{ $pendingPurchaseRequests ?? 0 }}" color="warning" />
     </div>
 </div>
 
@@ -46,6 +46,47 @@
                 <x-admin.recent-investments-table />
             </div>
         </div>
+
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-header bg-white border-0 fw-bold d-flex justify-content-between align-items-center">
+                <span>Recent Purchase Requests</span>
+                <a href="{{ route('admin.purchase-requests.index') }}" class="btn btn-sm btn-outline-primary">View all</a>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Buyer</th>
+                                <th>Project</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($purchaseRequests as $purchaseRequest)
+                                <tr>
+                                    <td>{{ $purchaseRequest->buyer_name }}</td>
+                                    <td>{{ $purchaseRequest->project?->name ?? '-' }}</td>
+                                    <td>
+                                        @if($purchaseRequest->status === 'pending')
+                                            <span class="badge bg-warning text-dark">Pending</span>
+                                        @elseif($purchaseRequest->status === 'approved')
+                                            <span class="badge bg-success">Approved</span>
+                                        @else
+                                            <span class="badge bg-danger">Rejected</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted py-4">No purchase requests yet.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="col-lg-4">
@@ -56,6 +97,7 @@
                     <a href="{{ route('admin.projects.index') }}" class="btn btn-outline-primary"><i class="bi bi-building me-2"></i>Manage Projects</a>
                     <a href="{{ route('admin.investors.index') }}" class="btn btn-outline-success"><i class="bi bi-people me-2"></i>View Investors</a>
                     <a href="{{ route('admin.payments.index') }}" class="btn btn-outline-info"><i class="bi bi-credit-card me-2"></i>Payments</a>
+                    <a href="{{ route('admin.purchase-requests.index') }}" class="btn btn-outline-warning"><i class="bi bi-bag-check me-2"></i>Purchase Requests</a>
                 </div>
             </div>
         </div>
