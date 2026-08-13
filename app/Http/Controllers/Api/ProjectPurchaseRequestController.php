@@ -37,6 +37,14 @@ class ProjectPurchaseRequestController extends Controller
 
     public function store(PurchaseRequestStoreRequest $request)
     {
+        $user = $request->user();
+
+        if (! $user) {
+            return response()->json([
+                'message' => 'Unauthorized. Please login first.',
+            ], 401);
+        }
+
         $data = $request->validated();
         $amount = $request->input('offer_amount', $request->input('offer_price'));
 
@@ -48,7 +56,7 @@ class ProjectPurchaseRequestController extends Controller
 
         $data['offer_amount'] = $amount;
         $data['offer_price'] = $amount;
-        $data['user_id'] = $request->user()?->id;
+        $data['user_id'] = $user->id;
         $data['status'] = 'pending';
 
         $purchaseRequest = ProjectPurchaseRequest::create($data);

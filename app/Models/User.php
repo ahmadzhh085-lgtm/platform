@@ -33,6 +33,11 @@ class User extends Authenticatable
            return $this->status !== 'inactive';
     }
 
+    public function purchaseRequests()
+    {
+        return $this->hasMany(ProjectPurchaseRequest::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

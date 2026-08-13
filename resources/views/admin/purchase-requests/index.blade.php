@@ -16,11 +16,11 @@
                     <tr>
                         <th>#</th>
                         <th>Project</th>
+                        <th>Requester</th>
                         <th>Buyer</th>
                         <th>Phone</th>
                         <th>Offer</th>
                         <th>Status</th>
-                        <th>Admin Notes</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -29,6 +29,7 @@
                         <tr>
                             <td>{{ $request->id }}</td>
                             <td>{{ $request->project?->name ?? '-' }}</td>
+                            <td>{{ $request->user?->name ?? 'No user' }}</td>
                             <td>{{ $request->buyer_name }}</td>
                             <td>{{ $request->buyer_phone }}</td>
                             <td>${{ number_format((float) $request->offer_amount, 2) }}</td>
@@ -41,7 +42,6 @@
                                     <span class="badge bg-danger">Rejected</span>
                                 @endif
                             </td>
-                            <td>{{ $request->admin_notes ?? '-' }}</td>
                             <td>
                                 <a href="{{ route('admin.purchase-requests.show', $request) }}" class="btn btn-sm btn-info">View</a>
                             </td>

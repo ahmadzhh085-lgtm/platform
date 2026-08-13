@@ -13,6 +13,8 @@
             <div class="row g-3">
                 <div class="col-md-6">
                     <p><strong>Project:</strong> {{ $purchaseRequest->project?->name ?? '-' }}</p>
+                    <p><strong>Submitted By User:</strong> {{ $purchaseRequest->user?->name ?? 'No user linked' }}</p>
+                    <p><strong>User Email:</strong> {{ $purchaseRequest->user?->email ?? '-' }}</p>
                     <p><strong>Buyer Name:</strong> {{ $purchaseRequest->buyer_name }}</p>
                     <p><strong>Phone:</strong> {{ $purchaseRequest->buyer_phone }}</p>
                     <p><strong>Email:</strong> {{ $purchaseRequest->buyer_email }}</p>

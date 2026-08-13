@@ -47,6 +47,10 @@ class PurchaseRequestController extends Controller
             'reviewed_at' => now(),
         ]);
 
+        if ($data['status'] === 'approved' && $purchaseRequest->project_id) {
+            $purchaseRequest->project()->update(['status' => 'sold']);
+        }
+
         return redirect()->route('admin.purchase-requests.index')->with('success', 'تم تحديث حالة طلب الشراء بنجاح.');
     }
 }
