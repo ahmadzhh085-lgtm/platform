@@ -38,6 +38,16 @@ class ProjectPurchaseRequestController extends Controller
     public function store(PurchaseRequestStoreRequest $request)
     {
         $data = $request->validated();
+        $amount = $request->input('offer_amount', $request->input('offer_price'));
+
+        if ($amount === null) {
+            return response()->json([
+                'message' => 'The offer amount is required.',
+            ], 422);
+        }
+
+        $data['offer_amount'] = $amount;
+        $data['offer_price'] = $amount;
         $data['user_id'] = $request->user()?->id;
         $data['status'] = 'pending';
 

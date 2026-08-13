@@ -17,6 +17,7 @@ class ProjectPurchaseRequest extends Model
         'buyer_email',
         'buyer_national_id',
         'offer_amount',
+        'offer_price',
         'notes',
         'status',
         'admin_notes',
