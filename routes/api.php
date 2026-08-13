@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\PropertyController;
 use App\Http\Controllers\Api\InvestorController;
 use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\ProjectPurchaseRequestController;
 
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
@@ -37,6 +38,15 @@ Route::get('payments/{payment}', [PaymentController::class, 'show']);
 // Public Investment routes (listing, show)
 Route::get('investments', [InvestmentController::class, 'index']);
 Route::get('investments/{investment}', [InvestmentController::class, 'show']);
+
+// Purchase requests API
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('purchase-requests', [ProjectPurchaseRequestController::class, 'index']);
+    Route::get('purchase-requests/{projectPurchaseRequest}', [ProjectPurchaseRequestController::class, 'show']);
+    Route::patch('purchase-requests/{projectPurchaseRequest}/status', [ProjectPurchaseRequestController::class, 'updateStatus']);
+});
+
+Route::post('purchase-requests', [ProjectPurchaseRequestController::class, 'store']);
 
 // Protected Payment and Investment routes (create, update, delete)
 Route::middleware(['auth:sanctum'])->group(function () {

@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\InvestmentController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\PurchaseRequestController;
 
 Route::prefix('admin')
     ->middleware(['auth', 'verified'])
@@ -37,6 +38,7 @@ Route::prefix('admin')
         Route::resource('investors', InvestorController::class);
             Route::resource('investments', InvestmentController::class); // Adding investments resource route
         Route::resource('payments', PaymentController::class);
+        Route::resource('purchase-requests', PurchaseRequestController::class);
         Route::resource('employees', EmployeeController::class); // إضافة مسار الموظفين
         Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
         Route::get('settings', function() { return view('admin.settings'); })->name('settings');

@@ -17,4 +17,9 @@ class Project extends Model
     {
         return $this->hasMany(Property::class);
     }
+
+    public function purchaseRequests()
+    {
+        return $this->hasMany(ProjectPurchaseRequest::class);
+    }
 }
