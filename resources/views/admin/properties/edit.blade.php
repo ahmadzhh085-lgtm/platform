@@ -48,7 +48,10 @@
                 <label class="form-label">Image</label>
                 <input type="file" name="image" class="form-control">
                 @if($property->image)
-                    <img src="{{ asset('storage/'.$property->image) }}" alt="Image" class="img-thumbnail mt-2" width="120">
+                    @php
+                        $imgSrc = strpos($property->image, 'http') === 0 ? $property->image : asset('storage/'.$property->image);
+                    @endphp
+                    <img src="{{ $imgSrc }}" alt="Image" class="img-thumbnail mt-2" width="120">
                 @endif
             </div>
             <button type="submit" class="btn btn-primary">Update</button>

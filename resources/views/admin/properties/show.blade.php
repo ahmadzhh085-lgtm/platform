@@ -22,7 +22,10 @@
             <dt class="col-sm-3">Image</dt>
             <dd class="col-sm-9">
                 @if($property->image)
-                    <img src="{{ asset('storage/'.$property->image) }}" alt="Image" class="img-thumbnail" width="120">
+                    @php
+                        $imgSrc = strpos($property->image, 'http') === 0 ? $property->image : asset('storage/'.$property->image);
+                    @endphp
+                    <img src="{{ $imgSrc }}" alt="Image" class="img-thumbnail" width="120">
                 @else
                     -
                 @endif
