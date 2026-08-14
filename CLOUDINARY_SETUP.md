@@ -1,3 +1,26 @@
+## ⚠️ REQUIRED: Railway Environment Variables
+
+Before images will upload to Cloudinary, you **must** set the following environment variables on the `zoological-flow` service in Railway (Project → Service → Variables):
+
+```env
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+`CloudinaryService` checks for these three variables at runtime. If any of them are missing, uploads silently fall back to local disk storage (`storage/app/public`).
+
+### Fallback behavior (local storage)
+
+If Cloudinary credentials are not configured:
+
+- Images are stored on the container's local filesystem under `storage/app/public` and served through the `public/storage` symlink.
+- The symlink is created automatically on every deploy/boot via `php artisan storage:link` (see `boot.sh` and the Railway start command), so images uploaded during a session will display correctly.
+- **This is not recommended for production.** Railway's filesystem is ephemeral — any new deployment, restart, or redeploy replaces the container's filesystem, so previously uploaded images will be lost unless a persistent volume is mounted at `/app/storage`.
+- Treat local storage as a temporary fallback only. Set the Cloudinary environment variables above as soon as possible for reliable, persistent image storage.
+
+---
+
 # ✅ حل مشكلة تخزين الصور على Railway
 
 ## المشكلة
