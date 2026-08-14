@@ -45,10 +45,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('purchase-requests/{projectPurchaseRequest}', [ProjectPurchaseRequestController::class, 'show']);
     Route::patch('purchase-requests/{projectPurchaseRequest}/status', [ProjectPurchaseRequestController::class, 'updateStatus']);
     Route::post('purchase-requests', [ProjectPurchaseRequestController::class, 'store']);
-    Route::post('project-purchase-requests', [ProjectPurchaseRequestController::class, 'store']);
-    Route::get('project-purchase-requests', [ProjectPurchaseRequestController::class, 'index']);
-    Route::get('project-purchase-requests/{projectPurchaseRequest}', [ProjectPurchaseRequestController::class, 'show']);
-    Route::patch('project-purchase-requests/{projectPurchaseRequest}/status', [ProjectPurchaseRequestController::class, 'updateStatus']);
+    
 });
 
 
