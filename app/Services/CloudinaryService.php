@@ -15,27 +15,26 @@ class CloudinaryService
         $apiKey = config('cloudinary.api_key');
         $apiSecret = config('cloudinary.api_secret');
 
-        // تحقق من البيانات
-        if (!$cloudName || !$apiKey || !$apiSecret) {
-            \Log::critical('Cloudinary credentials missing!', [
+        // لا نرمي استثناء هنا — سنتحقق عند الرفع فقط
+        if ($cloudName && $apiKey && $apiSecret) {
+            try {
+                $this->cloudinary = new Cloudinary([
+                    'cloud_name' => $cloudName,
+                    'api_key' => $apiKey,
+                    'api_secret' => $apiSecret,
+                ]);
+                \Log::info('Cloudinary initialized successfully');
+            } catch (\Exception $e) {
+                \Log::warning('Failed to initialize Cloudinary', ['error' => $e->getMessage()]);
+                $this->cloudinary = null;
+            }
+        } else {
+            \Log::warning('Cloudinary credentials not configured', [
                 'cloud_name' => $cloudName ? '***' : 'MISSING',
                 'api_key' => $apiKey ? '***' : 'MISSING',
                 'api_secret' => $apiSecret ? '***' : 'MISSING',
             ]);
-            throw new \Exception('❌ بيانات Cloudinary غير موجودة. تحقق من متغيرات البيئة!');
-        }
-
-        try {
-            $this->cloudinary = new Cloudinary([
-                'cloud_name' => $cloudName,
-                'api_key' => $apiKey,
-                'api_secret' => $apiSecret,
-            ]);
-        } catch (\Exception $e) {
-            \Log::error('Failed to initialize Cloudinary', [
-                'error' => $e->getMessage(),
-            ]);
-            throw new \Exception('❌ خطأ في الاتصال بـ Cloudinary: ' . $e->getMessage());
+            $this->cloudinary = null;
         }
     }
 
@@ -49,6 +48,12 @@ class CloudinaryService
     public function upload(UploadedFile $file, string $folder = 'investment-platform'): string
     {
         try {
+            // التحقق من وجود Cloudinary
+            if (!$this->cloudinary) {
+                \Log::warning('Cloudinary not initialized, using local storage');
+                return $this->uploadLocal($file, $folder);
+            }
+
             // التحقق من البيانات الأساسية
             if (!config('cloudinary.cloud_name') || config('cloudinary.cloud_name') === 'your_cloud_name') {
                 \Log::warning('Cloudinary credentials not configured, using local storage');
@@ -137,6 +142,12 @@ class CloudinaryService
             // تحقق إذا كانت صورة محلية
             if (strpos($imageUrl, 'storage/') !== false) {
                 return $this->deleteLocal($imageUrl);
+            }
+
+            // تحقق من وجود Cloudinary
+            if (!$this->cloudinary) {
+                \Log::warning('Cloudinary not initialized, skipping delete');
+                return false;
             }
 
             // استخراج public_id من الرابط

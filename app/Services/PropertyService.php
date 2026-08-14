@@ -7,11 +7,14 @@ use Illuminate\Http\Request;
 
 class PropertyService
 {
-    protected CloudinaryService $cloudinary;
+    protected ?CloudinaryService $cloudinary = null;
 
-    public function __construct()
+    protected function getCloudinaryService(): CloudinaryService
     {
-        $this->cloudinary = new CloudinaryService();
+        if ($this->cloudinary === null) {
+            $this->cloudinary = new CloudinaryService();
+        }
+        return $this->cloudinary;
     }
 
     public function list(Request $request)
@@ -39,7 +42,7 @@ class PropertyService
         // معالجة الصورة إذا كانت موجودة في البيانات
         if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
             try {
-                $data['image'] = $this->cloudinary->upload($data['image']);
+                $data['image'] = $this->getCloudinaryService()->upload($data['image']);
             } catch (\Exception $e) {
                 \Log::error('Failed to upload image: ' . $e->getMessage());
                 unset($data['image']);
@@ -56,11 +59,11 @@ class PropertyService
             try {
                 // حذف الصورة القديمة
                 if ($property->image) {
-                    $this->cloudinary->delete($property->image);
+                    $this->getCloudinaryService()->delete($property->image);
                 }
                 
                 // رفع الصورة الجديدة
-                $data['image'] = $this->cloudinary->upload($data['image']);
+                $data['image'] = $this->getCloudinaryService()->upload($data['image']);
             } catch (\Exception $e) {
                 \Log::error('Failed to upload image: ' . $e->getMessage());
                 unset($data['image']);
@@ -76,7 +79,7 @@ class PropertyService
         // حذف الصورة من Cloudinary
         if ($property->image) {
             try {
-                $this->cloudinary->delete($property->image);
+                $this->getCloudinaryService()->delete($property->image);
             } catch (\Exception $e) {
                 \Log::warning('Failed to delete image from Cloudinary: ' . $e->getMessage());
             }
