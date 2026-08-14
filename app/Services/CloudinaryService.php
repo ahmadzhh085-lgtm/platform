@@ -7,7 +7,7 @@ use Illuminate\Http\UploadedFile;
 
 class CloudinaryService
 {
-    protected Cloudinary $cloudinary;
+    protected ?Cloudinary $cloudinary = null;
 
     public function __construct()
     {
