@@ -114,14 +114,12 @@ class CloudinaryService
     {
         try {
             $path = $file->store("{$folder}/properties", 'public');
-            $url = url('storage/' . $path);
 
             \Log::info('Uploaded to local storage', [
                 'path' => $path,
-                'url' => $url,
             ]);
 
-            return $url;
+            return $path;
         } catch (\Exception $e) {
             \Log::error('Local storage upload failed', [
                 'error' => $e->getMessage(),

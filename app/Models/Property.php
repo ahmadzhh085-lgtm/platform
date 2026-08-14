@@ -13,6 +13,23 @@ class Property extends Model
         'project_id', 'title', 'type', 'price', 'location', 'area', 'status', 'image',
     ];
 
+    public function getImageAttribute($value)
+    {
+        if (empty($value)) {
+            return null;
+        }
+
+        if (filter_var($value, FILTER_VALIDATE_URL)) {
+            return $value;
+        }
+
+        if (str_starts_with($value, 'storage/')) {
+            return asset($value);
+        }
+
+        return asset('storage/' . ltrim($value, '/'));
+    }
+
     public function project()
     {
         return $this->belongsTo(Project::class);
