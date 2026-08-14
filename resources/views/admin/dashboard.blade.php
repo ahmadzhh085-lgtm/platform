@@ -49,17 +49,19 @@
 
         <div class="card border-0 shadow-sm rounded-4 mb-4">
             <div class="card-header bg-white border-0 fw-bold d-flex justify-content-between align-items-center">
-                <span>Recent Purchase Requests</span>
-                <a href="{{ route('admin.purchase-requests.index') }}" class="btn btn-sm btn-outline-primary">View all</a>
+                <span>طلبات الشراء الأخيرة</span>
+                <a href="{{ route('admin.purchase-requests.index') }}" class="btn btn-sm btn-outline-primary">عرض الكل</a>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th>Buyer</th>
-                                <th>Project</th>
-                                <th>Status</th>
+                                <th>المشتري</th>
+                                <th>المشروع</th>
+                                <th>المبلغ</th>
+                                <th>الحالة</th>
+                                <th>الإجراءات</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -67,19 +69,41 @@
                                 <tr>
                                     <td>{{ $purchaseRequest->buyer_name }}</td>
                                     <td>{{ $purchaseRequest->project?->name ?? '-' }}</td>
+                                    <td>${{ number_format((float) $purchaseRequest->offer_amount, 2) }}</td>
                                     <td>
                                         @if($purchaseRequest->status === 'pending')
-                                            <span class="badge bg-warning text-dark">Pending</span>
+                                            <span class="badge bg-warning text-dark">معلقة</span>
                                         @elseif($purchaseRequest->status === 'approved')
-                                            <span class="badge bg-success">Approved</span>
+                                            <span class="badge bg-success">موافق عليها</span>
                                         @else
-                                            <span class="badge bg-danger">Rejected</span>
+                                            <span class="badge bg-danger">مرفوضة</span>
                                         @endif
+                                    </td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            @if($purchaseRequest->status === 'pending')
+                                                <form action="{{ route('admin.purchase-requests.approve', $purchaseRequest) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-success" title="قبول">
+                                                        <i class="bi bi-check-lg"></i>
+                                                    </button>
+                                                </form>
+                                                <form action="{{ route('admin.purchase-requests.reject', $purchaseRequest) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-danger" title="رفض">
+                                                        <i class="bi bi-x-lg"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            <a href="{{ route('admin.purchase-requests.show', $purchaseRequest) }}" class="btn btn-sm btn-info" title="عرض">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3" class="text-center text-muted py-4">No purchase requests yet.</td>
+                                    <td colspan="5" class="text-center text-muted py-4">لا توجد طلبات شراء حتى الآن</td>
                                 </tr>
                             @endforelse
                         </tbody>

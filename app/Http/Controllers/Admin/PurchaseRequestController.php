@@ -22,8 +22,11 @@ class PurchaseRequestController extends Controller
 
         $purchaseRequests = $query->latest()->paginate(15);
         $statuses = ['pending', 'approved', 'rejected'];
+        $pendingCount = ProjectPurchaseRequest::where('status', 'pending')->count();
+        $approvedCount = ProjectPurchaseRequest::where('status', 'approved')->count();
+        $rejectedCount = ProjectPurchaseRequest::where('status', 'rejected')->count();
 
-        return view('admin.purchase-requests.index', compact('purchaseRequests', 'statuses'));
+        return view('admin.purchase-requests.index', compact('purchaseRequests', 'statuses', 'pendingCount', 'approvedCount', 'rejectedCount'));
     }
 
     public function show(ProjectPurchaseRequest $purchaseRequest)
@@ -52,5 +55,71 @@ class PurchaseRequestController extends Controller
         }
 
         return redirect()->route('admin.purchase-requests.index')->with('success', 'تم تحديث حالة طلب الشراء بنجاح.');
+    }
+
+    public function approve(Request $request, ProjectPurchaseRequest $purchaseRequest)
+    {
+        $purchaseRequest->update([
+            'status' => 'approved',
+            'admin_notes' => $request->input('admin_notes'),
+            'reviewed_by' => auth()->id(),
+            'reviewed_at' => now(),
+        ]);
+
+        if ($purchaseRequest->project_id) {
+            $purchaseRequest->project()->update(['status' => 'sold']);
+        }
+
+        return redirect()->route('admin.purchase-requests.index')->with('success', 'تم الموافقة على طلب الشراء بنجاح.');
+    }
+
+    public function reject(Request $request, ProjectPurchaseRequest $purchaseRequest)
+    {
+        $purchaseRequest->update([
+            'status' => 'rejected',
+            'admin_notes' => $request->input('admin_notes'),
+            'reviewed_by' => auth()->id(),
+            'reviewed_at' => now(),
+        ]);
+
+        return redirect()->route('admin.purchase-requests.index')->with('success', 'تم رفض طلب الشراء بنجاح.');
+    }
+
+    public function approve(ProjectPurchaseRequest $purchaseRequest)
+    {
+        if ($purchaseRequest->status !== 'pending') {
+            return redirect()->route('admin.purchase-requests.index')
+                ->with('error', 'لا يمكن الموافقة على طلب غير معلق.');
+        }
+
+        $purchaseRequest->update([
+            'status' => 'approved',
+            'reviewed_by' => auth()->id(),
+            'reviewed_at' => now(),
+        ]);
+
+        if ($purchaseRequest->project_id) {
+            $purchaseRequest->project()->update(['status' => 'sold']);
+        }
+
+        return redirect()->route('admin.purchase-requests.index')
+            ->with('success', 'تمت الموافقة على طلب الشراء بنجاح.');
+    }
+
+    public function reject(ProjectPurchaseRequest $purchaseRequest)
+    {
+        if ($purchaseRequest->status !== 'pending') {
+            return redirect()->route('admin.purchase-requests.index')
+                ->with('error', 'لا يمكن رفض طلب غير معلق.');
+        }
+
+        $purchaseRequest->update([
+            'status' => 'rejected',
+            'reviewed_by' => auth()->id(),
+            'reviewed_at' => now(),
+        ]);
+
+        return redirect()->route('admin.purchase-requests.index')
+            ->with('success', 'تم رفض طلب الشراء.');
     }
 }

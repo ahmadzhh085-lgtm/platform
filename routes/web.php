@@ -39,6 +39,8 @@ Route::prefix('admin')
             Route::resource('investments', InvestmentController::class); // Adding investments resource route
         Route::resource('payments', PaymentController::class);
         Route::resource('purchase-requests', PurchaseRequestController::class);
+        Route::post('purchase-requests/{purchaseRequest}/approve', [PurchaseRequestController::class, 'approve'])->name('purchase-requests.approve');
+        Route::post('purchase-requests/{purchaseRequest}/reject', [PurchaseRequestController::class, 'reject'])->name('purchase-requests.reject');
         Route::resource('employees', EmployeeController::class); // إضافة مسار الموظفين
         Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
         Route::get('settings', function() { return view('admin.settings'); })->name('settings');
