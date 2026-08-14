@@ -25,6 +25,9 @@ echo "SESSION_DRIVER: ${SESSION_DRIVER:-file}"
 echo "CACHE_STORE: ${CACHE_STORE:-file}"
 echo "DB_CONNECTION: ${DB_CONNECTION:-sqlite}"
 
+echo "Creating storage symlink..."
+php artisan storage:link || true
+
 echo "Running migrations..."
 php artisan migrate --force --no-interaction || true
 
