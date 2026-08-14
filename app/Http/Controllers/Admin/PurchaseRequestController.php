@@ -84,42 +84,5 @@ class PurchaseRequestController extends Controller
 
         return redirect()->route('admin.purchase-requests.index')->with('success', 'تم رفض طلب الشراء بنجاح.');
     }
-
-    public function approve(ProjectPurchaseRequest $purchaseRequest)
-    {
-        if ($purchaseRequest->status !== 'pending') {
-            return redirect()->route('admin.purchase-requests.index')
-                ->with('error', 'لا يمكن الموافقة على طلب غير معلق.');
-        }
-
-        $purchaseRequest->update([
-            'status' => 'approved',
-            'reviewed_by' => auth()->id(),
-            'reviewed_at' => now(),
-        ]);
-
-        if ($purchaseRequest->project_id) {
-            $purchaseRequest->project()->update(['status' => 'sold']);
-        }
-
-        return redirect()->route('admin.purchase-requests.index')
-            ->with('success', 'تمت الموافقة على طلب الشراء بنجاح.');
-    }
-
-    public function reject(ProjectPurchaseRequest $purchaseRequest)
-    {
-        if ($purchaseRequest->status !== 'pending') {
-            return redirect()->route('admin.purchase-requests.index')
-                ->with('error', 'لا يمكن رفض طلب غير معلق.');
-        }
-
-        $purchaseRequest->update([
-            'status' => 'rejected',
-            'reviewed_by' => auth()->id(),
-            'reviewed_at' => now(),
-        ]);
-
-        return redirect()->route('admin.purchase-requests.index')
-            ->with('success', 'تم رفض طلب الشراء.');
-    }
+    
 }
