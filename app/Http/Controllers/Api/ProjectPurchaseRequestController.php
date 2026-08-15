@@ -46,7 +46,7 @@ class ProjectPurchaseRequestController extends Controller
         }
 
         $data = $request->validated();
-        $amount = $request->input('offer_amount', $request->input('offer_price'));
+        $amount = $request->input('offer_amount');
 
         if ($amount === null) {
             return response()->json([
@@ -54,8 +54,8 @@ class ProjectPurchaseRequestController extends Controller
             ], 422);
         }
 
+        // set offer_amount only (no offer_price column in DB)
         $data['offer_amount'] = $amount;
-        $data['offer_price'] = $amount;
         $data['user_id'] = $user->id;
         $data['status'] = 'pending';
 

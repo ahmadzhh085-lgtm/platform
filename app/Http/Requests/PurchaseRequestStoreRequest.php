@@ -20,7 +20,6 @@ class PurchaseRequestStoreRequest extends FormRequest
             'buyer_email' => ['required', 'email', 'max:255'],
             'buyer_national_id' => ['required', 'string', 'max:255'],
             'offer_amount' => ['nullable', 'numeric', 'min:0'],
-            'offer_price' => ['nullable', 'numeric', 'min:0'],
             'notes' => ['nullable', 'string'],
         ];
     }
@@ -28,14 +27,10 @@ class PurchaseRequestStoreRequest extends FormRequest
     public function validated($key = null, $default = null)
     {
         $data = parent::validated($key, $default);
-        $amount = $this->input('offer_amount', $this->input('offer_price'));
+        $amount = $this->input('offer_amount');
 
         if ($amount !== null && ! array_key_exists('offer_amount', $data)) {
             $data['offer_amount'] = $amount;
-        }
-
-        if ($amount !== null && ! array_key_exists('offer_price', $data)) {
-            $data['offer_price'] = $amount;
         }
 
         if ($amount === null) {
