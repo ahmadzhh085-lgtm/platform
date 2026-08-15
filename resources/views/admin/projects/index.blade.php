@@ -12,6 +12,7 @@
         <table class="table table-hover align-middle mb-0">
             <thead class="table-light">
                 <tr>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Location</th>
                     <th>Status</th>
@@ -22,6 +23,13 @@
             <tbody>
                 @forelse($projects as $project)
                     <tr>
+                        <td>
+                            @if($project->image)
+                                <img src="{{ $project->image }}" alt="{{ $project->name }}" class="img-thumbnail" style="width: 54px; height: 54px; object-fit: cover;">
+                            @else
+                                <span class="badge bg-light text-muted">No image</span>
+                            @endif
+                        </td>
                         <td>{{ $project->name }}</td>
                         <td>{{ $project->location }}</td>
                         <td>@include('partials.status-badge', ['status' => $project->status])</td>

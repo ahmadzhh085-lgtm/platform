@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\Admin\ProjectRequest;
+use App\Services\CloudinaryService;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -40,7 +41,18 @@ class ProjectController extends Controller
 
     public function store(ProjectRequest $request)
     {
-        $project = Project::create($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            try {
+                $cloudinary = new CloudinaryService();
+                $data['image'] = $cloudinary->upload($request->file('image'));
+            } catch (\Exception $e) {
+                return redirect()->back()->withInput()->with('error', '❌ خطأ في رفع صورة المشروع: ' . $e->getMessage());
+            }
+        }
+
+        $project = Project::create($data);
         return redirect()->route('admin.projects.index')->with('success', 'Project created successfully.');
     }
 
@@ -51,12 +63,37 @@ class ProjectController extends Controller
 
     public function update(ProjectRequest $request, Project $project)
     {
-        $project->update($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            try {
+                if ($project->image) {
+                    $cloudinary = new CloudinaryService();
+                    $cloudinary->delete($project->image);
+                }
+
+                $cloudinary = new CloudinaryService();
+                $data['image'] = $cloudinary->upload($request->file('image'));
+            } catch (\Exception $e) {
+                return redirect()->back()->withInput()->with('error', '❌ خطأ في تحديث صورة المشروع: ' . $e->getMessage());
+            }
+        }
+
+        $project->update($data);
         return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully.');
     }
 
     public function destroy(Project $project)
     {
+        if ($project->image) {
+            try {
+                $cloudinary = new CloudinaryService();
+                $cloudinary->delete($project->image);
+            } catch (\Exception $e) {
+                \Log::warning('Failed to delete project image from Cloudinary: ' . $e->getMessage());
+            }
+        }
+
         $project->delete();
         return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully.');
     }

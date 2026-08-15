@@ -25,6 +25,7 @@ class ProjectRequest extends FormRequest
             'location' => 'nullable|string|max:255',
             'status' => 'required|string|max:50',
             'total_budget' => 'required|numeric|min:0',
+            'image' => 'nullable|image|max:2048',
         ];
     }
 }

@@ -5,7 +5,7 @@
     <div class="card-header bg-white fw-bold">Add Project</div>
     <div class="card-body">
         @include('partials.form-errors')
-        <form action="{{ route('admin.projects.store') }}" method="POST">
+        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label class="form-label">Name</label>
@@ -14,6 +14,10 @@
             <div class="mb-3">
                 <label class="form-label">Description</label>
                 <textarea name="description" class="form-control">{{ old('description') }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Project Image</label>
+                <input type="file" name="image" class="form-control" accept="image/*">
             </div>
             <div class="mb-3">
                 <label class="form-label">Location</label>

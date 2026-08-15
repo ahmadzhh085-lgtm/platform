@@ -4,6 +4,11 @@
 <div class="card shadow-sm rounded">
     <div class="card-header bg-white fw-bold">Project Details</div>
     <div class="card-body">
+        @if($project->image)
+            <div class="mb-4 text-center">
+                <img src="{{ $project->image }}" alt="{{ $project->name }}" class="img-fluid rounded shadow-sm" style="max-height: 260px;">
+            </div>
+        @endif
         <dl class="row mb-0">
             <dt class="col-sm-3">Name</dt>
             <dd class="col-sm-9">{{ $project->name }}</dd>
