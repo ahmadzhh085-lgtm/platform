@@ -8,6 +8,8 @@ use App\Http\Requests\UpdatePurchaseRequestStatusRequest;
 use App\Http\Resources\ProjectPurchaseRequestResource;
 use App\Models\ProjectPurchaseRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class ProjectPurchaseRequestController extends Controller
 {
@@ -40,6 +42,8 @@ class ProjectPurchaseRequestController extends Controller
         $user = $request->user();
 
         if (! $user) {
+            Log::warning('Purchase request creation attempted without an authenticated user.');
+
             return response()->json([
                 'message' => 'Unauthorized. Please login first.',
             ], 401);
@@ -59,7 +63,35 @@ class ProjectPurchaseRequestController extends Controller
         $data['user_id'] = $user->id;
         $data['status'] = 'pending';
 
-        $purchaseRequest = ProjectPurchaseRequest::create($data);
+        Log::info("Creating purchase request for user: {$user->id} with data: " . json_encode($data));
+
+        try {
+            $purchaseRequest = ProjectPurchaseRequest::create($data);
+
+            if (! $purchaseRequest || ! $purchaseRequest->exists) {
+                Log::error('Purchase request creation returned no persisted record.', [
+                    'user_id' => $user->id,
+                    'data' => $data,
+                ]);
+
+                return response()->json([
+                    'message' => 'Failed to create purchase request. The record was not persisted.',
+                ], 500);
+            }
+
+            Log::info("Purchase request created with ID: {$purchaseRequest->id}");
+        } catch (Throwable $exception) {
+            Log::error("Purchase request creation failed: {$exception->getMessage()}", [
+                'user_id' => $user->id,
+                'data' => $data,
+                'exception' => $exception,
+            ]);
+
+            return response()->json([
+                'message' => 'Failed to create purchase request.',
+                'error' => $exception->getMessage(),
+            ], 500);
+        }
 
         return (new ProjectPurchaseRequestResource($purchaseRequest->load(['project', 'user'])))
             ->response()
