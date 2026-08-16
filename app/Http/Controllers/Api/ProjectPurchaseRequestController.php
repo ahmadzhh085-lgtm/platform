@@ -50,18 +50,19 @@ class ProjectPurchaseRequestController extends Controller
         }
 
         $data = $request->validated();
-        $amount = $request->input('offer_amount');
+        $amount = $request->input('offer_amount', $request->input('offer_price'));
 
-        if ($amount === null) {
+        if ($amount === null || $amount === '') {
             return response()->json([
                 'message' => 'The offer amount is required.',
             ], 422);
         }
 
-        // set offer_amount only (no offer_price column in DB)
-        $data['offer_amount'] = $amount;
+        $data['offer_amount'] = (float) $amount;
         $data['user_id'] = $user->id;
         $data['status'] = 'pending';
+
+        unset($data['offer_price']);
 
         Log::info("Creating purchase request for user: {$user->id} with data: " . json_encode($data));
 
@@ -106,6 +107,10 @@ class ProjectPurchaseRequestController extends Controller
             'reviewed_by' => $request->user()?->id,
             'reviewed_at' => now(),
         ]);
+
+        if ($request->status === 'approved' && $projectPurchaseRequest->project_id) {
+            $projectPurchaseRequest->project()->update(['status' => 'sold']);
+        }
 
         return new ProjectPurchaseRequestResource($projectPurchaseRequest->fresh()->load(['project', 'user', 'reviewer']));
     }
