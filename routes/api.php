@@ -40,14 +40,15 @@ Route::get('investments', [InvestmentController::class, 'index']);
 Route::get('investments/{investment}', [InvestmentController::class, 'show']);
 
 // Purchase requests API
+// Purchase requests API - expose canonical endpoints and keep legacy alias for compatibility
 Route::middleware(['auth:sanctum'])->group(function () {
+    // Canonical routes
     Route::get('purchase-requests', [ProjectPurchaseRequestController::class, 'index']);
     Route::get('purchase-requests/{projectPurchaseRequest}', [ProjectPurchaseRequestController::class, 'show']);
     Route::patch('purchase-requests/{projectPurchaseRequest}/status', [ProjectPurchaseRequestController::class, 'updateStatus']);
     Route::post('purchase-requests', [ProjectPurchaseRequestController::class, 'store']);
-});
 
-Route::middleware(['auth:sanctum'])->group(function () {
+    // Legacy alias routes kept for older clients
     Route::get('project-purchase-requests', [ProjectPurchaseRequestController::class, 'index']);
     Route::get('project-purchase-requests/{projectPurchaseRequest}', [ProjectPurchaseRequestController::class, 'show']);
     Route::patch('project-purchase-requests/{projectPurchaseRequest}/status', [ProjectPurchaseRequestController::class, 'updateStatus']);
