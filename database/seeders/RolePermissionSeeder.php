@@ -15,6 +15,7 @@ class RolePermissionSeeder extends Seeder
             'Admin',
             'Manager',
             'Employee',
+            'User',
             'Accountant',
             'موظف المالية',
             'موظف الخدمات',
@@ -66,6 +67,8 @@ class RolePermissionSeeder extends Seeder
                     'manage payments',
                     'view reports',
                 ]);
+            } elseif ($role === 'User') {
+                $roleModel->syncPermissions([]);
             } elseif ($role === 'Accountant' || $role === 'موظف المالية') {
                 $roleModel->syncPermissions([
                     'manage payments',
