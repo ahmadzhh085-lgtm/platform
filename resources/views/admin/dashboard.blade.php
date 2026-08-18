@@ -200,6 +200,7 @@
                                 <th>Property</th>
                                 <th>Price</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -217,10 +218,15 @@
                                             <span class="badge bg-danger">Rejected</span>
                                         @endif
                                     </td>
+                                    <td>
+                                        <a href="{{ route('admin.property-sale-requests.show', $propertySaleRequest) }}" class="btn btn-sm btn-info" title="View Details">
+                                            <i class="bi bi-eye"></i> Details
+                                        </a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="text-center text-muted py-4">No property sale requests yet.</td>
+                                    <td colspan="5" class="text-center text-muted py-4">No property sale requests yet.</td>
                                 </tr>
                             @endforelse
                         </tbody>

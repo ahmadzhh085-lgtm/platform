@@ -55,6 +55,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.property-sale-requests.*') ? 'active' : '' }}" href="{{ route('admin.property-sale-requests.index') }}">
+                <i class="bi bi-house-heart"></i> <span>Sale Requests</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.employees.*') ? 'active' : '' }}" href="{{ route('admin.employees.index') }}">
                 <i class="bi bi-person-badge"></i> <span>Employees</span>
             </a>
