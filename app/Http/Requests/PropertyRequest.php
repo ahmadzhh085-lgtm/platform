@@ -18,9 +18,12 @@ class PropertyRequest extends FormRequest
             'title' => 'required|string|max:255',
             'type' => 'required|string|max:100',
             'price' => 'required|numeric|min:0',
+            'city' => 'required|string|max:255',
             'location' => 'nullable|string|max:255',
             'area' => 'nullable|numeric|min:0',
+            'bedrooms' => 'nullable|integer|min:0',
             'status' => 'required|string|max:50',
+            'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpg,png,jpeg,webp,gif|max:2048',
         ];
     }

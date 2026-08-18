@@ -79,7 +79,7 @@ class PurchaseRequestController extends Controller
             'status' => 'rejected',
             'admin_notes' => $request->input('admin_notes'),
             'reviewed_by' => auth()->id(),
-            'reviewed_at' => now(),
+            'reviewed_at' => now(), 
         ]);
 
         return redirect()->route('admin.purchase-requests.index')->with('success', 'تم رفض طلب الشراء بنجاح.');

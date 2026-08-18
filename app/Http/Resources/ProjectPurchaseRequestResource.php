@@ -16,6 +16,10 @@ class ProjectPurchaseRequestResource extends JsonResource
             'buyer_phone' => $this->buyer_phone,
             'buyer_email' => $this->buyer_email,
             'buyer_national_id' => $this->buyer_national_id,
+            'property_type' => $this->property_type,
+            'city' => $this->city,
+            'budget' => $this->budget,
+            'bedrooms' => $this->bedrooms,
             'offer_amount' => $this->offer_amount,
             'notes' => $this->notes,
             'status' => $this->status,
@@ -25,6 +29,7 @@ class ProjectPurchaseRequestResource extends JsonResource
             'project' => $this->whenLoaded('project', [
                 'id' => $this->project?->id,
                 'name' => $this->project?->name,
+                'city' => $this->project?->city,
                 'location' => $this->project?->location,
                 'status' => $this->project?->status,
             ]),

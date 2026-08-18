@@ -10,7 +10,17 @@ class Property extends Model
     use HasFactory;
 
     protected $fillable = [
-        'project_id', 'title', 'type', 'price', 'location', 'area', 'status', 'image',
+        'project_id',
+        'title',
+        'type',
+        'price',
+        'city',
+        'location',
+        'area',
+        'bedrooms',
+        'status',
+        'description',
+        'image',
     ];
 
     public function getImageAttribute($value)

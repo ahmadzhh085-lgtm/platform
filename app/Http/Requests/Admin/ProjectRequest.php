@@ -21,11 +21,13 @@ class ProjectRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'type' => 'required|string|max:100',
+            'city' => 'required|string|max:255',
             'description' => 'nullable|string',
             'location' => 'nullable|string|max:255',
             'status' => 'required|string|max:50',
             'total_budget' => 'required|numeric|min:0',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,webp,gif|max:2048',
         ];
     }
 }

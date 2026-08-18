@@ -14,14 +14,18 @@ class PropertyResource extends JsonResource
             'title' => $this->title,
             'type' => $this->type,
             'price' => $this->price,
+            'city' => $this->city,
             'location' => $this->location,
             'area' => $this->area,
+            'bedrooms' => $this->bedrooms,
             'status' => $this->status,
+            'description' => $this->description,
             'image' => $this->image,
             'project' => $this->whenLoaded('project', function () {
                 return [
                     'id' => $this->project?->id,
                     'name' => $this->project?->name,
+                    'city' => $this->project?->city,
                     'location' => $this->project?->location,
                     'status' => $this->project?->status,
                 ];

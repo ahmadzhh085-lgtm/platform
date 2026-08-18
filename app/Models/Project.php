@@ -10,7 +10,14 @@ class Project extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'location', 'status', 'total_budget', 'image',
+        'name',
+        'type',
+        'city',
+        'description',
+        'location',
+        'status',
+        'total_budget',
+        'image',
     ];
 
     public function getImageAttribute($value)
