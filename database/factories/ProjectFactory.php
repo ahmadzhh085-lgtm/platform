@@ -13,6 +13,8 @@ class ProjectFactory extends Factory
     {
         return [
             'name' => $this->faker->company() . ' Project',
+            'type' => $this->faker->randomElement(['villa', 'apartment', 'commercial']),
+            'city' => $this->faker->city(),
             'description' => $this->faker->paragraph(),
             'location' => $this->faker->city(),
             'status' => $this->faker->randomElement(['active', 'inactive', 'sold']),

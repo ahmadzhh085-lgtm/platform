@@ -54,7 +54,7 @@
                     <span class="text-muted">Pending Requests</span>
                     <span class="badge bg-warning-subtle text-warning"><i class="bi bi-bag-check"></i></span>
                 </div>
-                <h3 class="fw-bold mb-0">{{ $pendingPurchaseRequests ?? 0 }}</h3>
+                <h3 class="fw-bold mb-0">{{ ($pendingPurchaseRequests ?? 0) + ($pendingPropertySaleRequests ?? 0) }}</h3>
             </div>
         </div>
     </div>
@@ -179,6 +179,48 @@
                             @empty
                                 <tr>
                                     <td colspan="5" class="text-center text-muted py-4">No purchase requests yet.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-header bg-white border-0 fw-bold d-flex justify-content-between align-items-center">
+                <span>Latest Property Sale Requests</span>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Seller</th>
+                                <th>Property</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($propertySaleRequests as $propertySaleRequest)
+                                <tr>
+                                    <td>{{ $propertySaleRequest->seller_name }}</td>
+                                    <td>{{ $propertySaleRequest->title }}</td>
+                                    <td>${{ number_format((float) $propertySaleRequest->price, 2, '.', '') }}</td>
+                                    <td>
+                                        @if($propertySaleRequest->status === 'pending')
+                                            <span class="badge bg-warning text-dark">Pending</span>
+                                        @elseif($propertySaleRequest->status === 'approved')
+                                            <span class="badge bg-success">Approved</span>
+                                        @else
+                                            <span class="badge bg-danger">Rejected</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted py-4">No property sale requests yet.</td>
                                 </tr>
                             @endforelse
                         </tbody>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\PropertyController;
 use App\Http\Controllers\Api\InvestorController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProjectPurchaseRequestController;
+use App\Http\Controllers\Api\PropertySaleRequestController;
 
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
@@ -53,6 +54,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('project-purchase-requests/{projectPurchaseRequest}', [ProjectPurchaseRequestController::class, 'show']);
     Route::patch('project-purchase-requests/{projectPurchaseRequest}/status', [ProjectPurchaseRequestController::class, 'updateStatus']);
     Route::post('project-purchase-requests', [ProjectPurchaseRequestController::class, 'store']);
+
+    Route::get('property-sale-requests', [PropertySaleRequestController::class, 'index']);
+    Route::get('property-sale-requests/{propertySaleRequest}', [PropertySaleRequestController::class, 'show']);
+    Route::patch('property-sale-requests/{propertySaleRequest}/status', [PropertySaleRequestController::class, 'updateStatus']);
+    Route::post('property-sale-requests', [PropertySaleRequestController::class, 'store']);
 });
 
 
