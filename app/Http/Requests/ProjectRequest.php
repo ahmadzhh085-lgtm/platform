@@ -15,8 +15,8 @@ class ProjectRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'type' => 'required|string|max:100',
-            'city' => 'required|string|max:255',
+            'type' => 'nullable|string|max:100',
+            'city' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'status' => 'required|string|max:50',
