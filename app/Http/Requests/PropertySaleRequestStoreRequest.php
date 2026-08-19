@@ -27,6 +27,7 @@ class PropertySaleRequestStoreRequest extends FormRequest
             'bedrooms' => ['nullable', 'integer', 'min:0'],
             'description' => ['nullable', 'string'],
             'notes' => ['nullable', 'string'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,gif', 'max:2048'],
         ];
     }
 }

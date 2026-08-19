@@ -24,6 +24,7 @@ class PropertySaleRequestResource extends JsonResource
             'bedrooms' => $this->bedrooms,
             'description' => $this->description,
             'notes' => $this->notes,
+            'image' => $this->image,
             'status' => $this->status,
             'admin_notes' => $this->admin_notes,
             'reviewed_by' => $this->reviewed_by,

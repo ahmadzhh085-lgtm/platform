@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class PropertySaleRequestApiTest extends TestCase
@@ -30,6 +31,7 @@ class PropertySaleRequestApiTest extends TestCase
                 'bedrooms' => 4,
                 'description' => 'فيلا حديثة بعرض رائع وموقع مميز.',
                 'notes' => 'أرغب في بيع العقار فوراً.',
+                'image' => UploadedFile::fake()->create('property.jpg', 100, 'image/jpeg'),
             ]);
 
         $response->assertStatus(201)
@@ -39,6 +41,7 @@ class PropertySaleRequestApiTest extends TestCase
         $saleRequest = \App\Models\PropertySaleRequest::first();
 
         $this->assertNotNull($saleRequest);
+        $this->assertNotNull($saleRequest->image);
         $this->assertEquals('pending', $saleRequest->status);
 
         $decisionResponse = $this->actingAs($user, 'web')

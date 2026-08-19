@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('bedrooms')->nullable();
             $table->text('description')->nullable();
             $table->text('notes')->nullable();
+            $table->string('image')->nullable();
             $table->string('status')->default('pending');
             $table->text('admin_notes')->nullable();
             $table->foreignId('reviewed_by')->nullable()->constrained('users')->nullOnDelete();

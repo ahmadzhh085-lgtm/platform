@@ -9,6 +9,7 @@ use App\Http\Resources\PropertySaleRequestResource;
 use App\Models\Project;
 use App\Models\Property;
 use App\Models\PropertySaleRequest;
+use App\Services\CloudinaryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Throwable;
@@ -50,6 +51,19 @@ class PropertySaleRequestController extends Controller
         $data = $request->validated();
         $data['user_id'] = $user->id;
         $data['status'] = 'pending';
+
+        if ($request->hasFile('image')) {
+            try {
+                $data['image'] = (new CloudinaryService())->upload($request->file('image'));
+            } catch (Throwable $e) {
+                Log::error('Failed to upload property sale request image: ' . $e->getMessage(), [
+                    'exception' => $e,
+                    'data' => $data,
+                ]);
+
+                return response()->json(['message' => 'Failed to upload property image.'], 422);
+            }
+        }
 
         try {
             $propertySaleRequest = PropertySaleRequest::create($data);
@@ -116,6 +130,7 @@ class PropertySaleRequestController extends Controller
                     'bedrooms' => $propertySaleRequest->bedrooms,
                     'status' => 'available',
                     'description' => $propertySaleRequest->description,
+                    'image' => $propertySaleRequest->image,
                 ]
             );
 

@@ -24,6 +24,7 @@ class PropertySaleRequest extends Model
         'bedrooms',
         'description',
         'notes',
+        'image',
         'status',
         'admin_notes',
         'reviewed_by',
